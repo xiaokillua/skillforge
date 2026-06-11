@@ -123,6 +123,17 @@ Build, verify, and package the results into one markdown report:
 skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
 ```
 
+If you want structured output for automation, export JSON instead:
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --json --output ./skillforge-report.json
+```
+
+There is also a checked-in sample generated from `D4Vinci/Scrapling`:
+
+- [Markdown sample](../examples/SCRAPLING_REPORT.md)
+- [JSON sample](../examples/SCRAPLING_REPORT.json)
+
 ## 7. Review the Audit
 
 Always open:

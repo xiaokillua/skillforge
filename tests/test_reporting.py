@@ -57,6 +57,24 @@ class ReportingTests(unittest.TestCase):
             self.assertIn("## Build and Verification", markdown)
             self.assertIn("## Local Runtime Readiness", markdown)
 
+    def test_generate_report_to_dict_contains_nested_sections(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            repo = make_repo(tmp_path)
+            report = generate_report(
+                source=str(repo),
+                target="portable",
+                artifacts_dir=tmp_path / "dist",
+                workspace=tmp_path / "workspace",
+            )
+            payload = report.to_dict()
+            self.assertEqual(payload["target"], "portable")
+            self.assertEqual(payload["profile"]["slug"], "demo-tool")
+            self.assertEqual(payload["build_result"]["skill_name"], "demo-tool")
+            self.assertTrue(payload["verification_reports"])
+            self.assertIn("doctor_report", payload)
+            self.assertEqual(len(payload["recommended_next_steps"]), 3)
+
 
 if __name__ == "__main__":
     unittest.main()

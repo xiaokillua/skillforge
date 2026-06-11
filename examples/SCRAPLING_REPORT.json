@@ -1,0 +1,261 @@
+{
+  "skillforge_version": "0.2.0",
+  "source": "D4Vinci/Scrapling",
+  "target": "all",
+  "artifacts_dir": "/tmp/skillforge-report-sample/dist",
+  "workspace": "/workspace/skillforge",
+  "generated_on": "2026-06-12",
+  "profile": {
+    "slug": "scrapling",
+    "title": "Scrapling",
+    "summary": "Scrapling is an adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl. Its parser learns from website changes and automatically relocates your elements when pages update. Its fetchers bypass anti-bot systems like Cloudflare Turnstile out of the box. And its spider framework lets you scale up to concurrent, multi-session crawls with pause/resume and automatic proxy rotation - all in a few lines of Python. One library, zero compromises.",
+    "source": "D4Vinci/Scrapling",
+    "repo_url": "https://github.com/D4Vinci/Scrapling.git",
+    "owner": "D4Vinci",
+    "repo_name": "Scrapling",
+    "ecosystems": [
+      "python",
+      "docker"
+    ],
+    "detected_tools": [
+      "git",
+      "docker"
+    ],
+    "entrypoints": [
+      "scrapling"
+    ],
+    "install_commands": [
+      "pip install scrapling",
+      "pip install \"scrapling[fetchers]\"",
+      "pip install \"scrapling[ai]\"",
+      "pip install \"scrapling[shell]\"",
+      "pip install \"scrapling[all]\"",
+      "docker pull pyd4vinci/scrapling",
+      "docker pull ghcr.io/d4vinci/scrapling:latest"
+    ],
+    "usage_commands": [
+      "scrapling shell",
+      "scrapling extract get 'https://example.com' content.md",
+      "scrapling extract get 'https://example.com' content.txt --css-selector '#fromSkipToProducts' --impersonate 'chrome'  # All elements matching the CSS selector '#fromSkipToProducts'",
+      "scrapling extract fetch 'https://example.com' content.md --css-selector '#fromSkipToProducts' --no-headless",
+      "scrapling extract stealthy-fetch 'https://nopecha.com/demo/cloudflare' captchas.html --css-selector '#padded_content a' --solve-cloudflare",
+      "scrapling install           # normal install",
+      "scrapling install  --force  # force reinstall"
+    ],
+    "docs_files": [
+      "docs/README_AR.md",
+      "docs/README_CN.md",
+      "docs/README_DE.md",
+      "docs/README_ES.md",
+      "docs/README_FR.md",
+      "docs/README_JP.md",
+      "docs/README_KR.md",
+      "docs/README_PT_BR.md",
+      "docs/README_RU.md",
+      "docs/ai/mcp-server.md"
+    ],
+    "example_files": [],
+    "existing_skill_files": [
+      "agent-skill/Scrapling-Skill/SKILL.md"
+    ],
+    "readme_path": "README.md",
+    "readme_excerpt": "Scrapling is an adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl.\n\nIts parser learns from website changes and automatically relocates your elements when pages update. Its fetchers bypass anti-bot systems like Cloudflare Turnstile out of the box. And its spider framework lets you scale up to concurrent, multi-session crawls with pause/resume and automatic proxy rotation - all in a few lines of Python. One library, zero compromises.",
+    "license_name": "LICENSE",
+    "audit": {
+      "max_severity": "none",
+      "scanned_files": 202,
+      "findings": []
+    }
+  },
+  "build_result": {
+    "skill_name": "scrapling",
+    "outputs": [
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/SKILL.md",
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/references/OVERVIEW.md",
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/references/INSTALL.md",
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/references/COMMANDS.md",
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/references/SECURITY-AUDIT.md",
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/references/REPO-METADATA.md",
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/assets/MANIFEST.txt",
+      "/tmp/skillforge-report-sample/dist/portable/scrapling/analysis.json",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/SKILL.md",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/references/OVERVIEW.md",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/references/INSTALL.md",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/references/COMMANDS.md",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/references/SECURITY-AUDIT.md",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/references/REPO-METADATA.md",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/assets/MANIFEST.txt",
+      "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling/analysis.json",
+      "/tmp/skillforge-report-sample/dist/claude/scrapling.skill",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/SKILL.md",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/references/OVERVIEW.md",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/references/INSTALL.md",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/references/COMMANDS.md",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/references/SECURITY-AUDIT.md",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/references/REPO-METADATA.md",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/assets/MANIFEST.txt",
+      "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling/analysis.json",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/SKILL.md",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/references/OVERVIEW.md",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/references/INSTALL.md",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/references/COMMANDS.md",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/references/SECURITY-AUDIT.md",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/references/REPO-METADATA.md",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/assets/MANIFEST.txt",
+      "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling/analysis.json",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/SKILL.md",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/references/OVERVIEW.md",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/references/INSTALL.md",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/references/COMMANDS.md",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/references/SECURITY-AUDIT.md",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/references/REPO-METADATA.md",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/assets/MANIFEST.txt",
+      "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling/analysis.json",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/SKILL.md",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/references/OVERVIEW.md",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/references/INSTALL.md",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/references/COMMANDS.md",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/references/SECURITY-AUDIT.md",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/references/REPO-METADATA.md",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/assets/MANIFEST.txt",
+      "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling/analysis.json"
+    ]
+  },
+  "verification_reports": [
+    {
+      "target": "portable",
+      "skill_name": "scrapling",
+      "path": "/tmp/skillforge-report-sample/dist/portable/scrapling",
+      "archive": false,
+      "status": "ok",
+      "findings": []
+    },
+    {
+      "target": "claude",
+      "skill_name": "scrapling",
+      "path": "/tmp/skillforge-report-sample/dist/claude/.claude/skills/scrapling",
+      "archive": false,
+      "status": "ok",
+      "findings": []
+    },
+    {
+      "target": "claude",
+      "skill_name": "scrapling",
+      "path": "/tmp/skillforge-report-sample/dist/claude/scrapling.skill",
+      "archive": true,
+      "status": "ok",
+      "findings": []
+    },
+    {
+      "target": "codex",
+      "skill_name": "scrapling",
+      "path": "/tmp/skillforge-report-sample/dist/codex/.agents/skills/scrapling",
+      "archive": false,
+      "status": "ok",
+      "findings": []
+    },
+    {
+      "target": "copilot",
+      "skill_name": "scrapling",
+      "path": "/tmp/skillforge-report-sample/dist/copilot/.github/skills/scrapling",
+      "archive": false,
+      "status": "ok",
+      "findings": []
+    },
+    {
+      "target": "openclaw",
+      "skill_name": "scrapling",
+      "path": "/tmp/skillforge-report-sample/dist/openclaw/skills/scrapling",
+      "archive": false,
+      "status": "ok",
+      "findings": []
+    },
+    {
+      "target": "hermes",
+      "skill_name": "scrapling",
+      "path": "/tmp/skillforge-report-sample/dist/hermes/skills/scrapling",
+      "archive": false,
+      "status": "ok",
+      "findings": []
+    }
+  ],
+  "doctor_report": {
+    "skillforge_version": "0.2.0",
+    "workspace": "/workspace/skillforge",
+    "home": "/Users/demo",
+    "entries": [
+      {
+        "runtime": "Codex",
+        "target": "codex",
+        "status": "ready",
+        "cli_path": "/Users/demo/.local/bin/codex",
+        "version": "codex-cli 0.133.0",
+        "install_paths": [
+          "/workspace/skillforge/.agents/skills/<name>"
+        ],
+        "notes": [
+          "Project-local Codex skills live under .agents/skills/<name>."
+        ]
+      },
+      {
+        "runtime": "Claude Code",
+        "target": "claude",
+        "status": "missing",
+        "cli_path": null,
+        "version": null,
+        "install_paths": [
+          "/workspace/skillforge/.claude/skills/<name>",
+          "/Users/demo/.claude/skills/<name>"
+        ],
+        "notes": [
+          "Claude CLI was not found on PATH."
+        ]
+      },
+      {
+        "runtime": "GitHub Copilot",
+        "target": "copilot",
+        "status": "missing",
+        "cli_path": null,
+        "version": null,
+        "install_paths": [
+          "/workspace/skillforge/.github/skills/<name>"
+        ],
+        "notes": [
+          "VS Code CLI was not found on PATH.",
+          "SkillForge can still generate Copilot layouts, but local runtime readiness was not detected."
+        ]
+      },
+      {
+        "runtime": "OpenClaw",
+        "target": "openclaw",
+        "status": "ready",
+        "cli_path": "/opt/homebrew/bin/openclaw",
+        "version": "OpenClaw 2026.4.22 (00bd2cf)",
+        "install_paths": [
+          "/Users/demo/.openclaw/workspace/skills/<name>"
+        ],
+        "notes": [
+          "Default OpenClaw workspace skills path is ~/.openclaw/workspace/skills/<name>."
+        ]
+      },
+      {
+        "runtime": "Hermes",
+        "target": "hermes",
+        "status": "ready",
+        "cli_path": "/Users/demo/.local/bin/hermes",
+        "version": "Hermes Agent v0.16.0 (2026.6.5) · upstream 114e2657",
+        "install_paths": [
+          "/Users/demo/.hermes/skills/<name>"
+        ],
+        "notes": [
+          "Default Hermes skills path is ~/.hermes/skills/<name>."
+        ]
+      }
+    ]
+  },
+  "recommended_next_steps": [
+    "Review `references/SECURITY-AUDIT.md` before trusting upstream install steps.",
+    "Install the generated layout into a runtime marked `ready` on this machine.",
+    "Share this report or rerun `skillforge doctor --markdown` if you need to post environment context."
+  ]
+}

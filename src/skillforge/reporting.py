@@ -24,6 +24,21 @@ class SkillForgeReport:
     verification_reports: list[VerificationReport]
     doctor_report: DoctorReport
 
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "skillforge_version": __version__,
+            "source": self.source,
+            "target": self.target,
+            "artifacts_dir": self.artifacts_dir,
+            "workspace": self.workspace,
+            "generated_on": self.generated_on,
+            "profile": self.profile.to_dict(),
+            "build_result": self.build_result.to_dict(),
+            "verification_reports": [item.to_dict() for item in self.verification_reports],
+            "doctor_report": self.doctor_report.to_dict(),
+            "recommended_next_steps": recommended_next_steps(),
+        }
+
 
 def generate_report(
     source: str,
@@ -169,10 +184,16 @@ def render_report_markdown(report: SkillForgeReport) -> str:
         [
             "## Recommended Next Steps",
             "",
-            "1. Review `references/SECURITY-AUDIT.md` before trusting upstream install steps.",
-            "2. Install the generated layout into a runtime marked `ready` on this machine.",
-            "3. Share this report or rerun `skillforge doctor --markdown` if you need to post environment context.",
+            *[f"{index}. {step}" for index, step in enumerate(recommended_next_steps(), start=1)],
             "",
         ]
     )
     return "\n".join(lines)
+
+
+def recommended_next_steps() -> list[str]:
+    return [
+        "Review `references/SECURITY-AUDIT.md` before trusting upstream install steps.",
+        "Install the generated layout into a runtime marked `ready` on this machine.",
+        "Share this report or rerun `skillforge doctor --markdown` if you need to post environment context.",
+    ]

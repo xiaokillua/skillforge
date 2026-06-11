@@ -16,6 +16,12 @@ class BuildResult:
     profile: RepoProfile
     outputs: list[Path]
 
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "skill_name": self.profile.slug,
+            "outputs": [str(item) for item in self.outputs],
+        }
+
 
 def build_packages(
     profile: RepoProfile,

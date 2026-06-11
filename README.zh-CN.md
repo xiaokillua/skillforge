@@ -3,7 +3,7 @@
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/xiaokillua/skillforge)](https://github.com/xiaokillua/skillforge/releases)
 
-[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md) | [Codex 示例](examples/CODEX_SHOWCASE.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
+[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md) | [Codex 示例](examples/CODEX_SHOWCASE.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [报告样例](examples/SCRAPLING_REPORT.md) | [JSON 样例](examples/SCRAPLING_REPORT.json) | [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge 可以把一个 GitHub 仓库整理成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
 
@@ -142,6 +142,17 @@ skillforge verify ./dist/skillforge-scrapling-claude.skill
 skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
 ```
 
+如果你想拿到结构化 JSON：
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --json --output ./skillforge-report.json
+```
+
+这里也有一份用 `D4Vinci/Scrapling` 真实生成的样例：
+
+- [Markdown 报告样例](examples/SCRAPLING_REPORT.md)
+- [JSON 报告样例](examples/SCRAPLING_REPORT.json)
+
 ## 输出结构
 
 生成后的 skill 默认会包含：
@@ -187,7 +198,7 @@ skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge doctor [--workspace DIR] [--json | --markdown]
-skillforge report SOURCE [--target TARGET] [--artifacts DIR] [--workspace DIR] [--name NAME] [--allow-risky] [--output FILE]
+skillforge report SOURCE [--target TARGET] [--artifacts DIR] [--workspace DIR] [--name NAME] [--allow-risky] [--json] [--output FILE]
 skillforge version
 ```
 

@@ -123,6 +123,17 @@ skillforge verify ./dist/my-skill.skill
 skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
 ```
 
+如果你想把结果喂给自动化流程，也可以直接导出 JSON：
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --json --output ./skillforge-report.json
+```
+
+仓库里也放了一份用 `D4Vinci/Scrapling` 真实生成的样例：
+
+- [Markdown 报告样例](../examples/SCRAPLING_REPORT.md)
+- [JSON 报告样例](../examples/SCRAPLING_REPORT.json)
+
 ## 7. 看审计报告
 
 至少要打开这几个文件：

@@ -95,7 +95,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Print a markdown report suitable for issues, discussions, or docs",
     )
 
-    report_parser = subparsers.add_parser("report", help="Generate a shareable markdown report for one repo and target.")
+    report_parser = subparsers.add_parser("report", help="Generate a shareable report for one repo and target.")
     report_parser.add_argument("source", help="GitHub URL, owner/repo, or local path")
     report_parser.add_argument(
         "--target",
@@ -122,8 +122,9 @@ def build_parser() -> argparse.ArgumentParser:
     report_parser.add_argument(
         "-o",
         "--output",
-        help="Optional markdown file to write. Defaults to stdout.",
+        help="Optional report file to write. Defaults to stdout.",
     )
+    report_parser.add_argument("--json", action="store_true", help="Print JSON instead of a markdown report")
 
     subparsers.add_parser("version", help="Print the SkillForge version")
     return parser
@@ -273,11 +274,15 @@ def _report(args: argparse.Namespace) -> int:
         print(str(exc), file=sys.stderr)
         return 1
 
-    markdown = render_report_markdown(report)
-    if args.output:
-        write_text(Path(args.output), markdown)
-        print(f"Wrote report to {Path(args.output).resolve()}")
+    if args.json:
+        content = json.dumps(report.to_dict(), ensure_ascii=False, indent=2) + "\n"
     else:
-        print(markdown, end="")
+        content = render_report_markdown(report)
+    if args.output:
+        write_text(Path(args.output), content)
+        report_format = "JSON" if args.json else "markdown"
+        print(f"Wrote {report_format} report to {Path(args.output).resolve()}")
+    else:
+        print(content, end="")
 
     return 0 if all(not item.has_errors for item in report.verification_reports) else 3

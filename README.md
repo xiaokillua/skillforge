@@ -3,7 +3,7 @@
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/xiaokillua/skillforge)](https://github.com/xiaokillua/skillforge/releases)
 
-[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Compatibility](docs/RUNTIME_COMPATIBILITY.md) | [Codex Showcase](examples/CODEX_SHOWCASE.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Claude Showcase](examples/CLAUDE_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
+[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Compatibility](docs/RUNTIME_COMPATIBILITY.md) | [Codex Showcase](examples/CODEX_SHOWCASE.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Sample Report](examples/SCRAPLING_REPORT.md) | [Sample JSON](examples/SCRAPLING_REPORT.json) | [Claude Showcase](examples/CLAUDE_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge turns a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
 
@@ -145,6 +145,17 @@ Generate a shareable report:
 skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
 ```
 
+Generate the same report as structured JSON:
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --json --output ./skillforge-report.json
+```
+
+See a real report generated from `D4Vinci/Scrapling`:
+
+- [Markdown sample](examples/SCRAPLING_REPORT.md)
+- [JSON sample](examples/SCRAPLING_REPORT.json)
+
 If the audit finds a high-risk pattern, SkillForge stops by default:
 
 ```bash
@@ -194,7 +205,7 @@ skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge doctor [--workspace DIR] [--json | --markdown]
-skillforge report SOURCE [--target TARGET] [--artifacts DIR] [--workspace DIR] [--name NAME] [--allow-risky] [--output FILE]
+skillforge report SOURCE [--target TARGET] [--artifacts DIR] [--workspace DIR] [--name NAME] [--allow-risky] [--json] [--output FILE]
 skillforge version
 ```
 
