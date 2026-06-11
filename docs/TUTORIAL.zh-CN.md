@@ -92,7 +92,9 @@ skillforge build openai/openai-python --target all --output ./dist
 - GitHub Copilot：放到 `.github/skills/<name>`
 - OpenClaw：把生成出来的目录复制到 `~/.openclaw/workspace/skills/<name>`，或者你自己配置的 `skills.load.extraDirs`
 - Hermes：把生成出来的目录复制到 `~/.hermes/skills/<name>`，然后开一个新的 Hermes 会话
-- Claude：直接上传生成的 `.skill` 压缩包
+- Claude Code 项目级 skill：把 `.claude/skills/<name>` 放进你的仓库
+- Claude Code 个人 skill：把生成出来的 skill 目录复制到 `~/.claude/skills/<name>`
+- Claude Code 分发包：如果你只是想分享或归档，可以直接使用生成的 `<name>.skill` 压缩包
 
 ## 7. 推荐做法
 

@@ -86,6 +86,12 @@ Trigger this skill when the task mentions:
 
 
 def render_frontmatter(profile: RepoProfile, target: str, description: str, repo_line: str) -> str:
+    if target == "claude":
+        return f"""---
+name: {yaml_quote(profile.slug)}
+description: {yaml_quote(description)}
+---"""
+
     if target == "hermes":
         tags = ", ".join(["agent-skill", profile.slug, *profile.ecosystems[:3]])
         return f"""---

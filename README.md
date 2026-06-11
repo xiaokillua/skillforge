@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 
-[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
+[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Claude Showcase](examples/CLAUDE_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge turns a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
 
@@ -24,7 +24,7 @@ SkillForge bridges that gap:
 ## Supported Targets
 
 - `portable`: raw Agent Skills directory
-- `claude`: raw skill folder plus `.skill` archive
+- `claude`: `.claude/skills/<name>` plus an optional `.skill` archive
 - `codex`: `.agents/skills/<name>`
 - `copilot`: `.github/skills/<name>`
 - `openclaw`: `skills/<name>`
@@ -85,6 +85,12 @@ Build an OpenClaw-ready layout:
 skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist
 ```
 
+Build a Claude Code-ready layout:
+
+```bash
+skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist
+```
+
 If the audit finds a high-risk pattern, SkillForge stops by default:
 
 ```bash
@@ -114,6 +120,8 @@ my-skill/
   assets/
     MANIFEST.txt
 ```
+
+Target-specific packaging wraps that same content in each runtime's preferred directory structure. For Claude Code, SkillForge now writes `.claude/skills/<name>/SKILL.md` and also emits a `<name>.skill` archive as a convenience artifact for sharing.
 
 ## Security Model
 
@@ -151,7 +159,7 @@ python3 -m unittest discover -s tests
 - optional LLM-assisted summarization mode
 - better monorepo package selection
 - richer ecosystem adapters for Go, Rust, and Docker services
-- publish helpers for Hermes taps and Claude upload bundles
+- publish helpers for Hermes taps and skill catalogs
 - comparison mode for with-skill vs baseline agent performance
 
 ## License

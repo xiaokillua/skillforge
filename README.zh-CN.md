@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 
-[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
+[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge 可以把一个 GitHub 仓库整理成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
 
@@ -23,7 +23,7 @@ SkillForge 会：
 ## 支持的导出目标
 
 - `portable`：通用 Agent Skills 目录
-- `claude`：原始 skill 目录 + `.skill` 压缩包
+- `claude`：`.claude/skills/<name>` 目录 + 可选的 `.skill` 压缩包
 - `codex`：`.agents/skills/<name>`
 - `copilot`：`.github/skills/<name>`
 - `openclaw`：`skills/<name>`
@@ -82,6 +82,12 @@ skillforge build D4Vinci/Scrapling --target hermes --name skillforge-scrapling-h
 skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist
 ```
 
+生成适合 Claude Code 的结构：
+
+```bash
+skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist
+```
+
 ## 输出结构
 
 生成后的 skill 默认会包含：
@@ -99,6 +105,8 @@ my-skill/
   assets/
     MANIFEST.txt
 ```
+
+不同平台会再把这套内容包进各自习惯的目录结构。对于 Claude Code，SkillForge 现在会输出 `.claude/skills/<name>/SKILL.md`，同时额外生成一个 `<name>.skill` 压缩包，方便分发和存档。
 
 ## 安全设计
 
@@ -144,7 +152,7 @@ python3 -m unittest discover -s tests
 - 可选 LLM 总结模式
 - 更好的 monorepo 识别
 - 更完整的 Go / Rust / Docker 生态提取
-- Hermes tap 和 Claude 上传包辅助功能
+- Hermes tap 和 skill catalog 辅助功能
 - 自动做 with-skill / baseline 效果对比
 
 ## License

@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Align Claude packaging with the official `.claude/skills/<name>` layout.
+- Keep `.skill` archives as an optional sharing artifact instead of the primary Claude install path.
+- Add Claude showcase documentation in English and Chinese.
+
 ## 0.1.0
 
 - Initial public release.

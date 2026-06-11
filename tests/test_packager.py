@@ -48,6 +48,18 @@ demo-tool = "demo.cli:main"
 
 
 class PackagerTests(unittest.TestCase):
+    def test_build_claude_target_layout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            profile = make_profile(tmp_path)
+            result = build_packages(profile, tmp_path / "dist", "claude")
+            claude_skill = tmp_path / "dist" / ".claude" / "skills" / "demo-tool" / "SKILL.md"
+            claude_bundle = tmp_path / "dist" / "demo-tool.skill"
+            self.assertTrue(claude_skill.exists())
+            self.assertTrue(claude_bundle.exists())
+            self.assertIn(claude_skill, result.outputs)
+            self.assertIn(claude_bundle, result.outputs)
+
     def test_build_all_targets(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
@@ -55,14 +67,21 @@ class PackagerTests(unittest.TestCase):
             result = build_packages(profile, tmp_path / "dist", "all")
             codex_skill = tmp_path / "dist" / "codex" / ".agents" / "skills" / "demo-tool" / "SKILL.md"
             copilot_skill = tmp_path / "dist" / "copilot" / ".github" / "skills" / "demo-tool" / "SKILL.md"
+            claude_skill = tmp_path / "dist" / "claude" / ".claude" / "skills" / "demo-tool" / "SKILL.md"
             claude_bundle = tmp_path / "dist" / "claude" / "demo-tool.skill"
             hermes_skill = tmp_path / "dist" / "hermes" / "skills" / "demo-tool" / "SKILL.md"
             openclaw_skill = tmp_path / "dist" / "openclaw" / "skills" / "demo-tool" / "SKILL.md"
             self.assertTrue(codex_skill.exists())
             self.assertTrue(copilot_skill.exists())
+            self.assertTrue(claude_skill.exists())
             self.assertTrue(claude_bundle.exists())
+            claude_text = claude_skill.read_text(encoding="utf-8")
             hermes_text = hermes_skill.read_text(encoding="utf-8")
             openclaw_text = openclaw_skill.read_text(encoding="utf-8")
+            self.assertIn('name: "demo-tool"', claude_text)
+            self.assertIn('description: "Portable workflow for using demo-tool.', claude_text)
+            self.assertNotIn("compatibility:", claude_text)
+            self.assertNotIn("metadata:", claude_text)
             self.assertIn('version: "0.1.0"', hermes_text)
             self.assertIn('author: "SkillForge"', hermes_text)
             self.assertIn("platforms: [linux, macos, windows]", hermes_text)

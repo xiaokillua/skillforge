@@ -71,7 +71,7 @@ def _layout_root(base_output: Path, target: str, slug: str) -> Path:
     if target in {"openclaw", "hermes"}:
         return base_output / "skills" / slug
     if target == "claude":
-        return base_output / slug
+        return base_output / ".claude" / "skills" / slug
     raise ValueError(f"Unknown target: {target}")
 
 

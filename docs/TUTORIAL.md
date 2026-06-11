@@ -92,7 +92,9 @@ Typical locations:
 - GitHub Copilot: copy to `.github/skills/<name>`
 - OpenClaw: copy the generated folder to `~/.openclaw/workspace/skills/<name>` or another configured `skills.load.extraDirs` path
 - Hermes: copy the generated folder to `~/.hermes/skills/<name>` and start a new Hermes session
-- Claude: upload the generated `.skill` archive
+- Claude Code project skill: copy `.claude/skills/<name>` into your repo
+- Claude Code personal skill: copy the generated skill directory to `~/.claude/skills/<name>`
+- Claude Code sharing bundle: use the generated `<name>.skill` archive when you want a portable artifact
 
 ## 7. Best Practices
 

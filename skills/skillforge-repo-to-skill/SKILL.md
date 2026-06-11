@@ -18,7 +18,7 @@ Use this skill when the user wants to package a repository as an agent skill ins
 2. Review the extracted install commands, usage commands, and audit severity.
 3. Run `skillforge build SOURCE --target TARGET --output DIR`.
 4. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
-5. Deliver the target-specific folder or `.skill` archive to the user.
+5. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
 
 ## Common Commands
 
@@ -40,7 +40,7 @@ Build a Codex-ready layout:
 skillforge build owner/repo --target codex --output ./dist
 ```
 
-Build a Claude upload bundle:
+Build a Claude Code-ready layout:
 
 ```bash
 skillforge build owner/repo --target claude --output ./dist
