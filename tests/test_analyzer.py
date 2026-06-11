@@ -63,6 +63,36 @@ demo-tool = "demo.cli:main"
             profile = inspect_source(str(repo))
             self.assertEqual(profile.title, "Sample")
 
+    def test_html_hero_readme_falls_back_to_repo_name_and_detects_skill_files(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            repo = tmp_path / "scrap-demo"
+            repo.mkdir()
+            (repo / "README.md").write_text(
+                """<!-- hidden -->
+<h1 align="center">
+  <img alt="Scrap Demo Poster" src="cover.png">
+</h1>
+
+Scrap Demo is an adaptive scraping toolkit for dynamic sites.
+
+It ships with a CLI and browser-assisted workflows.
+
+# Platinum Sponsors
+""",
+                encoding="utf-8",
+            )
+            skill_dir = repo / "agent-skill" / "Scrap-Demo"
+            skill_dir.mkdir(parents=True)
+            (skill_dir / "SKILL.md").write_text(
+                "---\nname: scrap-demo\ndescription: Demo skill.\n---\n",
+                encoding="utf-8",
+            )
+            profile = inspect_source(str(repo))
+            self.assertEqual(profile.title, "Scrap Demo")
+            self.assertIn("adaptive scraping toolkit", profile.summary.lower())
+            self.assertIn("agent-skill/Scrap-Demo/SKILL.md", profile.existing_skill_files)
+
 
 if __name__ == "__main__":
     unittest.main()

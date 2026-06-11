@@ -62,6 +62,7 @@ class RepoProfile:
     usage_commands: list[str]
     docs_files: list[str]
     example_files: list[str]
+    existing_skill_files: list[str]
     readme_path: str | None
     readme_excerpt: str
     license_name: str
@@ -83,6 +84,7 @@ class RepoProfile:
             "usage_commands": self.usage_commands,
             "docs_files": self.docs_files,
             "example_files": self.example_files,
+            "existing_skill_files": self.existing_skill_files,
             "readme_path": self.readme_path,
             "readme_excerpt": self.readme_excerpt,
             "license_name": self.license_name,

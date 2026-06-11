@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 
-[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
+[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge 可以把一个 GitHub 仓库整理成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
 
@@ -15,6 +15,7 @@ SkillForge 会：
 - 接受 GitHub URL、`owner/repo` 简写，或者本地仓库路径
 - 浅克隆仓库并提取安装命令、常用命令、入口命令
 - 识别项目生态，例如 Python、Node、Rust、Go、Docker
+- 如果上游仓库已经自带 `SKILL.md`，也会识别出来，方便继续人工复核
 - 对上游文本文件做一个轻量安全审计
 - 生成标准 `SKILL.md` + `references/`
 - 再按目标平台导出不同目录结构

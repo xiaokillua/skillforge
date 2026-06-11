@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 
-[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
+[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge turns a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
 
@@ -17,6 +17,7 @@ SkillForge bridges that gap:
 - accepts a GitHub URL, `owner/repo`, or local checkout
 - shallow-clones the repo and extracts install and usage commands
 - detects ecosystems and entrypoints
+- detects upstream `SKILL.md` bundles when the repo already ships agent skills
 - runs a lightweight audit for risky setup patterns
 - emits a standard `SKILL.md` bundle plus target-specific packaging
 

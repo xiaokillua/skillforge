@@ -103,6 +103,10 @@ Trigger this skill when the task mentions:
 def render_overview(profile: RepoProfile) -> str:
     docs = "\n".join(f"- `{item}`" for item in profile.docs_files) or "- No `docs/` files were detected."
     examples = "\n".join(f"- `{item}`" for item in profile.example_files) or "- No `examples/` files were detected."
+    existing_skills = (
+        "\n".join(f"- `{item}`" for item in profile.existing_skill_files)
+        or "- No upstream `SKILL.md` files were detected."
+    )
     return f"""# Overview
 
 ## Project
@@ -127,6 +131,10 @@ def render_overview(profile: RepoProfile) -> str:
 ## Example Files
 
 {examples}
+
+## Existing Skill Files
+
+{existing_skills}
 """
 
 
@@ -204,6 +212,7 @@ def render_metadata(profile: RepoProfile) -> str:
 - License: `{profile.license_name}`
 - Owner: `{profile.owner or "local"}`
 - Repo name: `{profile.repo_name}`
+- Existing skill files detected: `{len(profile.existing_skill_files)}`
 """
 
 

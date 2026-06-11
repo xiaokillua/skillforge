@@ -61,6 +61,11 @@ SKIP_DIRS = {
     ".turbo",
 }
 
+HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+HTML_TAG_RE = re.compile(r"<[^>]+>")
+MARKDOWN_IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
+MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\([^)]+\)")
+
 
 def slugify(value: str) -> str:
     lowered = value.strip().lower()
@@ -116,12 +121,45 @@ def dedupe_keep_order(items: list[str]) -> list[str]:
 def first_paragraphs(markdown: str, limit: int = 2) -> list[str]:
     paragraphs: list[str] = []
     current: list[str] = []
-    for raw_line in markdown.splitlines():
-        line = raw_line.strip()
+    cleaned_markdown = HTML_COMMENT_RE.sub("", markdown)
+    in_code_fence = False
+    skip_until: str | None = None
+    for raw_line in cleaned_markdown.splitlines():
+        stripped_raw = raw_line.strip()
+        if stripped_raw.startswith("```"):
+            in_code_fence = not in_code_fence
+            if current:
+                paragraph = " ".join(current).strip()
+                lowered = paragraph.lower()
+                if paragraph and lowered not in {"sponsors", "platinum sponsors"}:
+                    paragraphs.append(paragraph)
+                current = []
+                if len(paragraphs) >= limit:
+                    break
+            continue
+        if in_code_fence:
+            continue
+        if skip_until:
+            if skip_until in stripped_raw:
+                skip_until = None
+            continue
+        if stripped_raw.startswith("<h1"):
+            skip_until = "</h1>"
+            continue
+        if stripped_raw.startswith("<p ") and 'align="center"' in stripped_raw:
+            skip_until = "</p>"
+            continue
+        if stripped_raw.startswith("<table"):
+            skip_until = "</table>"
+            continue
+        if stripped_raw.count("<a ") >= 2:
+            continue
+        line = visible_markdown_text(raw_line)
         if not line:
             if current:
                 paragraph = " ".join(current).strip()
-                if paragraph and not paragraph.startswith("![]") and not paragraph.startswith("[!"):
+                lowered = paragraph.lower()
+                if paragraph and lowered not in {"sponsors", "platinum sponsors"}:
                     paragraphs.append(paragraph)
                 current = []
                 if len(paragraphs) >= limit:
@@ -132,7 +170,7 @@ def first_paragraphs(markdown: str, limit: int = 2) -> list[str]:
         current.append(line)
     if current and len(paragraphs) < limit:
         paragraph = " ".join(current).strip()
-        if paragraph:
+        if paragraph and paragraph.lower() not in {"sponsors", "platinum sponsors"}:
             paragraphs.append(paragraph)
     return paragraphs[:limit]
 
@@ -152,3 +190,18 @@ def relative_paths(root: Path, paths: list[Path]) -> list[str]:
 def yaml_quote(value: str) -> str:
     escaped = value.replace("\\", "\\\\").replace('"', '\\"')
     return f'"{escaped}"'
+
+
+def visible_markdown_text(raw_line: str) -> str:
+    line = HTML_TAG_RE.sub(" ", raw_line)
+    line = MARKDOWN_IMAGE_RE.sub(" ", line)
+    line = MARKDOWN_LINK_RE.sub(r"\1", line)
+    line = (
+        line.replace("&middot;", " ")
+        .replace("&nbsp;", " ")
+        .replace("&amp;", "&")
+        .replace("&lt;", "<")
+        .replace("&gt;", ">")
+    )
+    line = " ".join(line.split())
+    return line.strip()

@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 
 from .models import AuditFinding, AuditReport, RepoProfile, SourceSnapshot
 from .utils import (
+    HTML_COMMENT_RE,
     README_NAMES,
     SKIP_DIRS,
     code_fences,
@@ -22,6 +23,7 @@ from .utils import (
     read_text,
     relative_paths,
     slugify,
+    visible_markdown_text,
 )
 
 
@@ -36,6 +38,18 @@ AI_INSTRUCTION_FILES = {
     "GEMINI.md",
     "COPILOT-INSTRUCTIONS.md",
     "SYSTEM.md",
+}
+
+GENERIC_HEADINGS = {
+    "sponsors",
+    "platinum sponsors",
+    "features",
+    "key features",
+    "installation",
+    "usage",
+    "documentation",
+    "license",
+    "changelog",
 }
 
 COMMAND_SCAN_SUFFIXES = {
@@ -136,6 +150,7 @@ def analyze_repository(snapshot: SourceSnapshot, name_override: str | None = Non
 
     docs_files = _discover_group(root, "docs")
     example_files = _discover_group(root, "examples")
+    existing_skill_files = _discover_existing_skills(root)
     license_name = _detect_license(root)
     audit = audit_repository(root)
 
@@ -154,6 +169,7 @@ def analyze_repository(snapshot: SourceSnapshot, name_override: str | None = Non
         usage_commands=usage_commands,
         docs_files=docs_files,
         example_files=example_files,
+        existing_skill_files=existing_skill_files,
         readme_path=str(readme.relative_to(root)) if readme else None,
         readme_excerpt="\n\n".join(paragraphs) if paragraphs else "",
         license_name=license_name,
@@ -256,10 +272,19 @@ def _parse_source(source: str) -> dict[str, str]:
 
 
 def _readme_title(markdown: str) -> str | None:
-    for line in markdown.splitlines():
-        stripped = line.strip()
-        if stripped.startswith("# "):
-            return stripped[2:].strip()
+    cleaned_markdown = HTML_COMMENT_RE.sub("", markdown)
+    in_code_fence = False
+    for line in cleaned_markdown.splitlines():
+        raw = line.strip()
+        if raw.startswith("```"):
+            in_code_fence = not in_code_fence
+            continue
+        if in_code_fence:
+            continue
+        if raw.startswith("# "):
+            title = visible_markdown_text(raw[2:]).strip()
+            if title.lower() not in GENERIC_HEADINGS:
+                return title
     return None
 
 
@@ -360,6 +385,16 @@ def _discover_group(root: Path, folder_name: str) -> list[str]:
     if not folder.exists():
         return []
     files = [path for path in folder.rglob("*") if path.is_file()]
+    files.sort()
+    return relative_paths(root, files[:10])
+
+
+def _discover_existing_skills(root: Path) -> list[str]:
+    files: list[Path] = []
+    for path in root.rglob("SKILL.md"):
+        if any(part in SKIP_DIRS for part in path.parts):
+            continue
+        files.append(path)
     files.sort()
     return relative_paths(root, files[:10])
 
