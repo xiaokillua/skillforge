@@ -6,6 +6,7 @@
 - Add runtime compatibility documentation and a concrete Codex showcase.
 - Add `doctor` for local runtime readiness checks across Codex, Claude, Copilot, OpenClaw, and Hermes.
 - Add `doctor --markdown` for shareable environment reports.
+- Add `report` to generate a combined markdown artifact from inspect, build, verify, and doctor.
 
 ## 0.2.0 - 2026-06-12
 

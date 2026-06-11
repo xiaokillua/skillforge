@@ -19,8 +19,9 @@ Use this skill when the user wants to package a repository as an agent skill ins
 3. Review the extracted install commands, usage commands, and audit severity.
 4. Run `skillforge build SOURCE --target TARGET --output DIR --verify` as the default path.
 5. If you need a second pass later, run `skillforge verify PATH --target TARGET` against the generated result.
-6. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
-7. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
+6. If the user wants a shareable artifact, run `skillforge report SOURCE --target TARGET --artifacts DIR --output FILE`.
+7. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
+8. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
 
 ## Common Commands
 
@@ -53,6 +54,12 @@ Build a Claude Code-ready layout:
 
 ```bash
 skillforge build owner/repo --target claude --output ./dist --verify
+```
+
+Generate a shareable report:
+
+```bash
+skillforge report owner/repo --target all --artifacts ./dist --output ./skillforge-report.md
 ```
 
 Verify the generated bundle:

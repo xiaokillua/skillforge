@@ -136,6 +136,12 @@ skillforge verify ./dist --target codex
 skillforge verify ./dist/skillforge-scrapling-claude.skill
 ```
 
+生成一份可分享的报告：
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
+```
+
 ## 输出结构
 
 生成后的 skill 默认会包含：
@@ -181,6 +187,7 @@ skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge doctor [--workspace DIR] [--json | --markdown]
+skillforge report SOURCE [--target TARGET] [--artifacts DIR] [--workspace DIR] [--name NAME] [--allow-risky] [--output FILE]
 skillforge version
 ```
 

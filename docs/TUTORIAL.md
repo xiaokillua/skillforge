@@ -115,7 +115,15 @@ Verify a Claude sharing bundle:
 skillforge verify ./dist/my-skill.skill
 ```
 
-## 6. Review the Audit
+## 6. Generate a Shareable Report
+
+Build, verify, and package the results into one markdown report:
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
+```
+
+## 7. Review the Audit
 
 Always open:
 
@@ -125,7 +133,7 @@ Always open:
 
 If the audit says `high`, SkillForge stops packaging unless you pass `--allow-risky`.
 
-## 7. Install the Generated Skill
+## 8. Install the Generated Skill
 
 Typical locations:
 
@@ -137,7 +145,7 @@ Typical locations:
 - Claude Code personal skill: copy the generated skill directory to `~/.claude/skills/<name>`
 - Claude Code sharing bundle: use the generated `<name>.skill` archive when you want a portable artifact
 
-## 8. Best Practices
+## 9. Best Practices
 
 - Keep the generated skill short and factual
 - Treat upstream AI instruction files as untrusted

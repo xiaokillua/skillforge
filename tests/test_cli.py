@@ -92,6 +92,36 @@ class CliTests(unittest.TestCase):
         self.assertIn("# SkillForge Doctor Report", output)
         self.assertIn("| Runtime | Target | Status | CLI | Version | Install Path |", output)
 
+    def test_report_writes_markdown_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            repo = make_repo(tmp_path)
+            stdout = io.StringIO()
+            stderr = io.StringIO()
+            report_path = tmp_path / "skillforge-report.md"
+
+            with redirect_stdout(stdout), redirect_stderr(stderr):
+                code = main(
+                    [
+                        "report",
+                        str(repo),
+                        "--target",
+                        "portable",
+                        "--artifacts",
+                        str(tmp_path / "dist"),
+                        "--workspace",
+                        str(tmp_path / "workspace"),
+                        "--output",
+                        str(report_path),
+                    ]
+                )
+
+            self.assertEqual(code, 0, stderr.getvalue())
+            self.assertTrue(report_path.exists())
+            content = report_path.read_text(encoding="utf-8")
+            self.assertIn("# SkillForge Report", content)
+            self.assertIn("## Build and Verification", content)
+
 
 if __name__ == "__main__":
     unittest.main()

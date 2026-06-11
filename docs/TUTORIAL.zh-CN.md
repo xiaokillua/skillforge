@@ -115,7 +115,15 @@ skillforge verify ./dist/codex
 skillforge verify ./dist/my-skill.skill
 ```
 
-## 6. 看审计报告
+## 6. 生成可分享报告
+
+如果你想把构建、校验和本机状态整合成一个 markdown 报告：
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
+```
+
+## 7. 看审计报告
 
 至少要打开这几个文件：
 
@@ -125,7 +133,7 @@ skillforge verify ./dist/my-skill.skill
 
 如果审计等级是 `high`，SkillForge 默认不会继续打包，除非你手动加 `--allow-risky`。
 
-## 7. 安装生成好的 Skill
+## 8. 安装生成好的 Skill
 
 常见位置：
 
@@ -137,7 +145,7 @@ skillforge verify ./dist/my-skill.skill
 - Claude Code 个人 skill：把生成出来的 skill 目录复制到 `~/.claude/skills/<name>`
 - Claude Code 分发包：如果你只是想分享或归档，可以直接使用生成的 `<name>.skill` 压缩包
 
-## 8. 推荐做法
+## 9. 推荐做法
 
 - 保持生成的 skill 短、小、可验证
 - 不要把上游 AI 指令文件直接当可信内容

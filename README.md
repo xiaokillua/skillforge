@@ -139,6 +139,12 @@ Verify a Claude archive:
 skillforge verify ./dist/skillforge-scrapling-claude.skill
 ```
 
+Generate a shareable report:
+
+```bash
+skillforge report openai/openai-python --target all --artifacts ./dist --output ./skillforge-report.md
+```
+
 If the audit finds a high-risk pattern, SkillForge stops by default:
 
 ```bash
@@ -188,6 +194,7 @@ skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge doctor [--workspace DIR] [--json | --markdown]
+skillforge report SOURCE [--target TARGET] [--artifacts DIR] [--workspace DIR] [--name NAME] [--allow-risky] [--output FILE]
 skillforge version
 ```
 

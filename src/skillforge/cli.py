@@ -10,6 +10,8 @@ from .analyzer import inspect_source
 from .doctor import inspect_local_runtimes, render_doctor_markdown
 from .generator import TARGETS
 from .packager import build_packages
+from .reporting import generate_report, render_report_markdown
+from .utils import write_text
 from .verifier import VERIFY_TARGETS, verify_build_outputs, verify_skill
 
 
@@ -23,6 +25,8 @@ def main(argv: list[str] | None = None) -> int:
         return _build(args)
     if args.command == "doctor":
         return _doctor(args)
+    if args.command == "report":
+        return _report(args)
     if args.command == "verify":
         return _verify(args)
     if args.command == "version":
@@ -89,6 +93,36 @@ def build_parser() -> argparse.ArgumentParser:
         "--markdown",
         action="store_true",
         help="Print a markdown report suitable for issues, discussions, or docs",
+    )
+
+    report_parser = subparsers.add_parser("report", help="Generate a shareable markdown report for one repo and target.")
+    report_parser.add_argument("source", help="GitHub URL, owner/repo, or local path")
+    report_parser.add_argument(
+        "--target",
+        choices=sorted(TARGETS),
+        default="all",
+        help="Packaging target to build and verify inside the report",
+    )
+    report_parser.add_argument(
+        "--artifacts",
+        default="dist",
+        help="Directory where report builds the target artifacts",
+    )
+    report_parser.add_argument(
+        "--workspace",
+        default=".",
+        help="Workspace path used for local runtime readiness checks",
+    )
+    report_parser.add_argument("--name", help="Override the generated skill slug")
+    report_parser.add_argument(
+        "--allow-risky",
+        action="store_true",
+        help="Allow packaging even when the audit finds high-risk patterns",
+    )
+    report_parser.add_argument(
+        "-o",
+        "--output",
+        help="Optional markdown file to write. Defaults to stdout.",
     )
 
     subparsers.add_parser("version", help="Print the SkillForge version")
@@ -223,3 +257,27 @@ def _doctor(args: argparse.Namespace) -> int:
         for note in entry.notes:
             print(f"  - note: {note}")
     return 0
+
+
+def _report(args: argparse.Namespace) -> int:
+    try:
+        report = generate_report(
+            source=args.source,
+            target=args.target,
+            artifacts_dir=Path(args.artifacts),
+            workspace=Path(args.workspace),
+            name_override=args.name,
+            allow_risky=args.allow_risky,
+        )
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+    markdown = render_report_markdown(report)
+    if args.output:
+        write_text(Path(args.output), markdown)
+        print(f"Wrote report to {Path(args.output).resolve()}")
+    else:
+        print(markdown, end="")
+
+    return 0 if all(not item.has_errors for item in report.verification_reports) else 3
