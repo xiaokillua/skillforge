@@ -7,6 +7,7 @@ from pathlib import Path
 
 from . import __version__
 from .analyzer import inspect_source
+from .doctor import inspect_local_runtimes
 from .generator import TARGETS
 from .packager import build_packages
 from .verifier import VERIFY_TARGETS, verify_build_outputs, verify_skill
@@ -20,6 +21,8 @@ def main(argv: list[str] | None = None) -> int:
         return _inspect(args)
     if args.command == "build":
         return _build(args)
+    if args.command == "doctor":
+        return _doctor(args)
     if args.command == "verify":
         return _verify(args)
     if args.command == "version":
@@ -73,6 +76,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     verify_parser.add_argument("--name", help="Select a specific skill name when the directory contains multiple skills")
     verify_parser.add_argument("--json", action="store_true", help="Print JSON instead of a human summary")
+
+    doctor_parser = subparsers.add_parser("doctor", help="Inspect local runtime readiness for supported targets.")
+    doctor_parser.add_argument(
+        "--workspace",
+        default=".",
+        help="Workspace path used to compute project-local install locations",
+    )
+    doctor_parser.add_argument("--json", action="store_true", help="Print JSON instead of a human summary")
 
     subparsers.add_parser("version", help="Print the SkillForge version")
     return parser
@@ -172,3 +183,33 @@ def _verify(args: argparse.Namespace) -> int:
     else:
         print("Findings: none")
     return 0 if not report.has_errors else 2
+
+
+def _doctor(args: argparse.Namespace) -> int:
+    try:
+        report = inspect_local_runtimes(Path(args.workspace))
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+    if args.json:
+        print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+        return 0
+
+    print("SkillForge Doctor")
+    print(f"SkillForge version: {report.skillforge_version}")
+    print(f"Workspace: {report.workspace}")
+    print(f"Home: {report.home}")
+    print("Runtimes:")
+    for entry in report.entries:
+        print(f"- {entry.runtime}: {entry.status.upper()}")
+        print(f"  - target: {entry.target}")
+        print(f"  - cli: {entry.cli_path or 'not found'}")
+        if entry.version:
+            print(f"  - version: {entry.version}")
+        print(f"  - install path: {entry.install_paths[0]}")
+        for extra_path in entry.install_paths[1:]:
+            print(f"  - alternate path: {extra_path}")
+        for note in entry.notes:
+            print(f"  - note: {note}")
+    return 0

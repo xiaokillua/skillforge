@@ -22,6 +22,12 @@ pipx install "git+https://github.com/xiaokillua/skillforge.git"
 
 ## 2. 先检查，再生成
 
+你也可以先看一下本机运行时是否就绪：
+
+```bash
+skillforge doctor
+```
+
 先看 SkillForge 识别出了什么：
 
 ```bash

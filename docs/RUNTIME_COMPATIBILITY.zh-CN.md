@@ -63,7 +63,8 @@
 
 如果你是按运行时来评估 SkillForge，推荐按这个顺序看：
 
-1. 先看这份矩阵。
-2. 再打开对应运行时的 showcase。
-3. 用 `skillforge build ... --verify` 自己复现一次。
-4. 最后再安装到你的 agent 环境里。
+1. 先在你机器上运行一次 `skillforge doctor`。
+2. 再看这份矩阵。
+3. 再打开对应运行时的 showcase。
+4. 用 `skillforge build ... --verify` 自己复现一次。
+5. 最后再安装到你的 agent 环境里。

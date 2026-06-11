@@ -61,6 +61,7 @@ Check it:
 
 ```bash
 skillforge version
+skillforge doctor
 ```
 
 Install without cloning:
@@ -76,6 +77,12 @@ pipx install "git+https://github.com/xiaokillua/skillforge.git"
 ```
 
 ## Quick Start
+
+Check which targets are usable on your machine:
+
+```bash
+skillforge doctor
+```
 
 Inspect a repo:
 
@@ -179,6 +186,7 @@ This is not a full malware scanner. It is a fast first pass that helps you avoid
 skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
+skillforge doctor [--workspace DIR] [--json]
 skillforge version
 ```
 

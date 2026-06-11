@@ -22,6 +22,12 @@ pipx install "git+https://github.com/xiaokillua/skillforge.git"
 
 ## 2. Inspect Before You Build
 
+Check your local runtime readiness first:
+
+```bash
+skillforge doctor
+```
+
 Start by looking at what SkillForge detected:
 
 ```bash

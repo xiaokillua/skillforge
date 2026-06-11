@@ -63,7 +63,8 @@ Validated with SkillForge `v0.2.0` on `2026-06-12`.
 
 If you are evaluating SkillForge for a specific runtime, use this order:
 
-1. Start with this matrix.
-2. Open the runtime-specific showcase linked above.
-3. Reproduce it with `skillforge build ... --verify`.
-4. Only then install the generated skill into your agent environment.
+1. Run `skillforge doctor` on your machine.
+2. Start with this matrix.
+3. Open the runtime-specific showcase linked above.
+4. Reproduce it with `skillforge build ... --verify`.
+5. Only then install the generated skill into your agent environment.

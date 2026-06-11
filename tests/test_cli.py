@@ -68,6 +68,18 @@ class CliTests(unittest.TestCase):
             self.assertIn("[OK] claude:", output)
             self.assertIn("[OK] claude archive:", output)
 
+    def test_doctor_json_succeeds(self) -> None:
+        stdout = io.StringIO()
+        stderr = io.StringIO()
+
+        with redirect_stdout(stdout), redirect_stderr(stderr):
+            code = main(["doctor", "--workspace", ".", "--json"])
+
+        output = stdout.getvalue()
+        self.assertEqual(code, 0, stderr.getvalue())
+        self.assertIn('"skillforge_version"', output)
+        self.assertIn('"entries"', output)
+
 
 if __name__ == "__main__":
     unittest.main()

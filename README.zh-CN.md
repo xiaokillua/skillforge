@@ -58,6 +58,7 @@ python3 -m pip install -e .
 
 ```bash
 skillforge version
+skillforge doctor
 ```
 
 如果你不想先 clone，也可以直接安装：
@@ -73,6 +74,12 @@ pipx install "git+https://github.com/xiaokillua/skillforge.git"
 ```
 
 ## 快速开始
+
+先检查你这台机器现在能直接用哪些目标：
+
+```bash
+skillforge doctor
+```
 
 先检查一个仓库：
 
@@ -172,6 +179,7 @@ skillforge build owner/risky-repo --output ./dist --allow-risky --verify
 skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
+skillforge doctor [--workspace DIR] [--json]
 skillforge version
 ```
 

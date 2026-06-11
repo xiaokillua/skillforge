@@ -15,11 +15,12 @@ Use this skill when the user wants to package a repository as an agent skill ins
 ## Workflow
 
 1. Run `skillforge inspect SOURCE` to understand the repo first.
-2. Review the extracted install commands, usage commands, and audit severity.
-3. Run `skillforge build SOURCE --target TARGET --output DIR --verify` as the default path.
-4. If you need a second pass later, run `skillforge verify PATH --target TARGET` against the generated result.
-5. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
-6. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
+2. Run `skillforge doctor` if the user needs to know which local runtimes are ready.
+3. Review the extracted install commands, usage commands, and audit severity.
+4. Run `skillforge build SOURCE --target TARGET --output DIR --verify` as the default path.
+5. If you need a second pass later, run `skillforge verify PATH --target TARGET` against the generated result.
+6. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
+7. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
 
 ## Common Commands
 
@@ -27,6 +28,12 @@ Inspect:
 
 ```bash
 skillforge inspect owner/repo
+```
+
+Check local runtime readiness:
+
+```bash
+skillforge doctor
 ```
 
 Build everything:
