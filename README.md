@@ -1,5 +1,7 @@
 # SkillForge
 
+[![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
+
 [中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge turns a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.

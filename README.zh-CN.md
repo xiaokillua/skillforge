@@ -1,5 +1,7 @@
 # SkillForge
 
+[![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
+
 [English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge 可以把一个 GitHub 仓库整理成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
