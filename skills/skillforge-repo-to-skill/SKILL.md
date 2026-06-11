@@ -34,6 +34,7 @@ Check local runtime readiness:
 
 ```bash
 skillforge doctor
+skillforge doctor --markdown
 ```
 
 Build everything:

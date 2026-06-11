@@ -5,6 +5,7 @@
 - Add `build --verify` so packaging can validate generated layouts immediately in the same command.
 - Add runtime compatibility documentation and a concrete Codex showcase.
 - Add `doctor` for local runtime readiness checks across Codex, Claude, Copilot, OpenClaw, and Hermes.
+- Add `doctor --markdown` for shareable environment reports.
 
 ## 0.2.0 - 2026-06-12
 

@@ -51,6 +51,39 @@ class DoctorReport:
         }
 
 
+def render_doctor_markdown(report: DoctorReport) -> str:
+    lines = [
+        "# SkillForge Doctor Report",
+        "",
+        f"- SkillForge version: `{report.skillforge_version}`",
+        f"- Workspace: `{report.workspace}`",
+        f"- Home: `{report.home}`",
+        "",
+        "| Runtime | Target | Status | CLI | Version | Install Path |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for entry in report.entries:
+        cli_value = f"`{entry.cli_path}`" if entry.cli_path else "not found"
+        version_value = f"`{entry.version}`" if entry.version else "-"
+        install_value = "<br>".join(f"`{path}`" for path in entry.install_paths)
+        lines.append(
+            f"| {entry.runtime} | `{entry.target}` | `{entry.status}` | {cli_value} | {version_value} | {install_value} |"
+        )
+
+    lines.append("")
+    lines.append("## Notes")
+    lines.append("")
+    for entry in report.entries:
+        lines.append(f"### {entry.runtime}")
+        if not entry.notes:
+            lines.append("- No extra notes.")
+        else:
+            for note in entry.notes:
+                lines.append(f"- {note}")
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def inspect_local_runtimes(
     workspace: Path,
     home: Path | None = None,

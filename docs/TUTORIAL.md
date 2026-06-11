@@ -26,6 +26,7 @@ Check your local runtime readiness first:
 
 ```bash
 skillforge doctor
+skillforge doctor --markdown
 ```
 
 Start by looking at what SkillForge detected:

@@ -7,7 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from skillforge.doctor import inspect_local_runtimes
+from skillforge.doctor import inspect_local_runtimes, render_doctor_markdown
 
 
 class DoctorTests(unittest.TestCase):
@@ -56,6 +56,33 @@ class DoctorTests(unittest.TestCase):
             self.assertEqual(entries["hermes"].status, "ready")
             self.assertIn(".agents/skills/<name>", entries["codex"].install_paths[0])
             self.assertIn(".claude/skills/<name>", entries["claude"].install_paths[0])
+
+    def test_render_doctor_markdown_contains_table_and_notes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            workspace = tmp_path / "workspace"
+            home = tmp_path / "home"
+            workspace.mkdir()
+            home.mkdir()
+
+            def fake_which(name: str) -> str | None:
+                return { "codex": "/usr/local/bin/codex" }.get(name)
+
+            def fake_runner(command: list[str]) -> str:
+                return "codex-cli 0.133.0"
+
+            report = inspect_local_runtimes(
+                workspace=workspace,
+                home=home,
+                which_lookup=fake_which,
+                command_runner=fake_runner,
+            )
+            markdown = render_doctor_markdown(report)
+            self.assertIn("# SkillForge Doctor Report", markdown)
+            self.assertIn("| Runtime | Target | Status | CLI | Version | Install Path |", markdown)
+            self.assertIn("| Codex | `codex` | `ready` |", markdown)
+            self.assertIn("## Notes", markdown)
+            self.assertIn("### Codex", markdown)
 
 
 if __name__ == "__main__":

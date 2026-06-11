@@ -26,6 +26,7 @@ pipx install "git+https://github.com/xiaokillua/skillforge.git"
 
 ```bash
 skillforge doctor
+skillforge doctor --markdown
 ```
 
 先看 SkillForge 识别出了什么：

@@ -79,6 +79,7 @@ pipx install "git+https://github.com/xiaokillua/skillforge.git"
 
 ```bash
 skillforge doctor
+skillforge doctor --markdown
 ```
 
 先检查一个仓库：
@@ -179,7 +180,7 @@ skillforge build owner/risky-repo --output ./dist --allow-risky --verify
 skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
-skillforge doctor [--workspace DIR] [--json]
+skillforge doctor [--workspace DIR] [--json | --markdown]
 skillforge version
 ```
 

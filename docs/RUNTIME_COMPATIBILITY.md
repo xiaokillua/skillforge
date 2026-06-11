@@ -63,7 +63,7 @@ Validated with SkillForge `v0.2.0` on `2026-06-12`.
 
 If you are evaluating SkillForge for a specific runtime, use this order:
 
-1. Run `skillforge doctor` on your machine.
+1. Run `skillforge doctor` on your machine. If you need to share the result, use `skillforge doctor --markdown`.
 2. Start with this matrix.
 3. Open the runtime-specific showcase linked above.
 4. Reproduce it with `skillforge build ... --verify`.

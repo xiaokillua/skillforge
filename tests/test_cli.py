@@ -80,6 +80,18 @@ class CliTests(unittest.TestCase):
         self.assertIn('"skillforge_version"', output)
         self.assertIn('"entries"', output)
 
+    def test_doctor_markdown_succeeds(self) -> None:
+        stdout = io.StringIO()
+        stderr = io.StringIO()
+
+        with redirect_stdout(stdout), redirect_stderr(stderr):
+            code = main(["doctor", "--workspace", ".", "--markdown"])
+
+        output = stdout.getvalue()
+        self.assertEqual(code, 0, stderr.getvalue())
+        self.assertIn("# SkillForge Doctor Report", output)
+        self.assertIn("| Runtime | Target | Status | CLI | Version | Install Path |", output)
+
 
 if __name__ == "__main__":
     unittest.main()

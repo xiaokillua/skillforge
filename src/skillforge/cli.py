@@ -7,7 +7,7 @@ from pathlib import Path
 
 from . import __version__
 from .analyzer import inspect_source
-from .doctor import inspect_local_runtimes
+from .doctor import inspect_local_runtimes, render_doctor_markdown
 from .generator import TARGETS
 from .packager import build_packages
 from .verifier import VERIFY_TARGETS, verify_build_outputs, verify_skill
@@ -83,7 +83,13 @@ def build_parser() -> argparse.ArgumentParser:
         default=".",
         help="Workspace path used to compute project-local install locations",
     )
-    doctor_parser.add_argument("--json", action="store_true", help="Print JSON instead of a human summary")
+    doctor_output = doctor_parser.add_mutually_exclusive_group()
+    doctor_output.add_argument("--json", action="store_true", help="Print JSON instead of a human summary")
+    doctor_output.add_argument(
+        "--markdown",
+        action="store_true",
+        help="Print a markdown report suitable for issues, discussions, or docs",
+    )
 
     subparsers.add_parser("version", help="Print the SkillForge version")
     return parser
@@ -194,6 +200,10 @@ def _doctor(args: argparse.Namespace) -> int:
 
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+        return 0
+
+    if args.markdown:
+        print(render_doctor_markdown(report), end="")
         return 0
 
     print("SkillForge Doctor")
