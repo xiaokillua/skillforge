@@ -27,26 +27,11 @@ def render_skill_markdown(profile: RepoProfile, target: str) -> str:
         f"Portable workflow for using {profile.repo_name}. "
         f"Use when a task needs install steps, CLI commands, common workflows, or repo-specific guidance for {profile.repo_name}."
     )
-    compatibility = (
-        "Designed for Agent Skills compatible runtimes such as Claude, Codex, GitHub Copilot, OpenClaw, and Hermes. "
-        "Requires shell access and the ability to read bundled files."
-    )
     install_block = "\n".join(f"- `{command}`" for command in profile.install_commands) or "- Review `references/INSTALL.md`."
     command_block = "\n".join(f"- `{command}`" for command in profile.usage_commands) or "- Review `references/COMMANDS.md`."
     audit_note = profile.audit.max_severity.upper()
     repo_line = profile.repo_url or profile.source
-    return f"""---
-name: {profile.slug}
-description: {yaml_quote(description)}
-license: {yaml_quote(profile.license_name)}
-compatibility: {yaml_quote(compatibility)}
-metadata:
-  generated-by: skillforge
-  generated-version: {yaml_quote(__version__)}
-  target: {yaml_quote(target)}
-  source-repo: {yaml_quote(repo_line)}
-  primary-ecosystems: {yaml_quote(", ".join(profile.ecosystems))}
----
+    return f"""{render_frontmatter(profile, target, description, repo_line)}
 
 # {profile.title}
 
@@ -98,6 +83,45 @@ Trigger this skill when the task mentions:
 - `references/SECURITY-AUDIT.md`
 - `references/REPO-METADATA.md`
 """
+
+
+def render_frontmatter(profile: RepoProfile, target: str, description: str, repo_line: str) -> str:
+    if target == "hermes":
+        tags = ", ".join(["agent-skill", profile.slug, *profile.ecosystems[:3]])
+        return f"""---
+name: {profile.slug}
+description: {yaml_quote(description)}
+version: {yaml_quote(__version__)}
+author: "SkillForge"
+license: {yaml_quote(profile.license_name)}
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [{tags}]
+  skillforge:
+    generated-by: "skillforge"
+    generated-version: {yaml_quote(__version__)}
+    target: {yaml_quote(target)}
+    source-repo: {yaml_quote(repo_line)}
+    primary-ecosystems: {yaml_quote(", ".join(profile.ecosystems))}
+---"""
+
+    compatibility = (
+        "Designed for Agent Skills compatible runtimes such as Claude, Codex, GitHub Copilot, OpenClaw, and Hermes. "
+        "Requires shell access and the ability to read bundled files."
+    )
+    return f"""---
+name: {profile.slug}
+description: {yaml_quote(description)}
+license: {yaml_quote(profile.license_name)}
+compatibility: {yaml_quote(compatibility)}
+metadata:
+  generated-by: skillforge
+  generated-version: {yaml_quote(__version__)}
+  target: {yaml_quote(target)}
+  source-repo: {yaml_quote(repo_line)}
+  primary-ecosystems: {yaml_quote(", ".join(profile.ecosystems))}
+---"""
 
 
 def render_overview(profile: RepoProfile) -> str:

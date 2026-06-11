@@ -56,9 +56,15 @@ class PackagerTests(unittest.TestCase):
             codex_skill = tmp_path / "dist" / "codex" / ".agents" / "skills" / "demo-tool" / "SKILL.md"
             copilot_skill = tmp_path / "dist" / "copilot" / ".github" / "skills" / "demo-tool" / "SKILL.md"
             claude_bundle = tmp_path / "dist" / "claude" / "demo-tool.skill"
+            hermes_skill = tmp_path / "dist" / "hermes" / "skills" / "demo-tool" / "SKILL.md"
             self.assertTrue(codex_skill.exists())
             self.assertTrue(copilot_skill.exists())
             self.assertTrue(claude_bundle.exists())
+            hermes_text = hermes_skill.read_text(encoding="utf-8")
+            self.assertIn('version: "0.1.0"', hermes_text)
+            self.assertIn('author: "SkillForge"', hermes_text)
+            self.assertIn("platforms: [linux, macos, windows]", hermes_text)
+            self.assertIn("hermes:", hermes_text)
             self.assertEqual(result.profile.slug, "demo-tool")
 
 

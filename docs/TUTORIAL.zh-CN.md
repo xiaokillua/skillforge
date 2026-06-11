@@ -91,7 +91,7 @@ skillforge build openai/openai-python --target all --output ./dist
 - Codex：放到 `.agents/skills/<name>`
 - GitHub Copilot：放到 `.github/skills/<name>`
 - OpenClaw：放到 `skills/<name>`
-- Hermes：放到 `skills/<name>`，或者放到 tap 仓库里
+- Hermes：把生成出来的目录复制到 `~/.hermes/skills/<name>`，然后开一个新的 Hermes 会话
 - Claude：直接上传生成的 `.skill` 压缩包
 
 ## 7. 推荐做法
