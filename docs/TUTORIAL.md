@@ -90,7 +90,7 @@ Typical locations:
 
 - Codex: copy to `.agents/skills/<name>`
 - GitHub Copilot: copy to `.github/skills/<name>`
-- OpenClaw: copy to `skills/<name>`
+- OpenClaw: copy the generated folder to `~/.openclaw/workspace/skills/<name>` or another configured `skills.load.extraDirs` path
 - Hermes: copy the generated folder to `~/.hermes/skills/<name>` and start a new Hermes session
 - Claude: upload the generated `.skill` archive
 

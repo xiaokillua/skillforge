@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 
-[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
+[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge turns a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
 
@@ -77,6 +77,12 @@ Build a Hermes-ready layout:
 
 ```bash
 skillforge build D4Vinci/Scrapling --target hermes --name skillforge-scrapling-hermes --output ./dist
+```
+
+Build an OpenClaw-ready layout:
+
+```bash
+skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist
 ```
 
 If the audit finds a high-risk pattern, SkillForge stops by default:

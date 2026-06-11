@@ -110,6 +110,24 @@ metadata:
         "Designed for Agent Skills compatible runtimes such as Claude, Codex, GitHub Copilot, OpenClaw, and Hermes. "
         "Requires shell access and the ability to read bundled files."
     )
+    if target == "openclaw":
+        openclaw_meta = render_openclaw_metadata(profile, repo_line)
+        return f"""---
+name: {profile.slug}
+description: {yaml_quote(description)}
+version: {yaml_quote(__version__)}
+author: "SkillForge"
+license: {yaml_quote(profile.license_name)}
+metadata:
+{openclaw_meta}
+  skillforge:
+    generated-by: "skillforge"
+    generated-version: {yaml_quote(__version__)}
+    target: {yaml_quote(target)}
+    source-repo: {yaml_quote(repo_line)}
+    primary-ecosystems: {yaml_quote(", ".join(profile.ecosystems))}
+---"""
+
     return f"""---
 name: {profile.slug}
 description: {yaml_quote(description)}
@@ -122,6 +140,34 @@ metadata:
   source-repo: {yaml_quote(repo_line)}
   primary-ecosystems: {yaml_quote(", ".join(profile.ecosystems))}
 ---"""
+
+
+def render_openclaw_metadata(profile: RepoProfile, repo_line: str) -> str:
+    bins: list[str] = []
+    any_bins: list[str] = []
+    if "python" in profile.ecosystems:
+        bins.append("python3")
+        any_bins.extend(["pip", "pip3"])
+    if "node" in profile.ecosystems:
+        any_bins.extend(["npm", "pnpm", "yarn"])
+    if "rust" in profile.ecosystems:
+        bins.append("cargo")
+    if "go" in profile.ecosystems:
+        bins.append("go")
+
+    lines = [
+        "  openclaw:",
+        f"    homepage: {yaml_quote(repo_line)}",
+    ]
+    if bins or any_bins:
+        lines.append("    requires:")
+        if bins:
+            lines.append("      bins:")
+            lines.extend(f"        - {item}" for item in bins)
+        if any_bins:
+            lines.append("      anyBins:")
+            lines.extend(f"        - {item}" for item in any_bins)
+    return "\n".join(lines) + "\n"
 
 
 def render_overview(profile: RepoProfile) -> str:

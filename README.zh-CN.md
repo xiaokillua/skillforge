@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 
-[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
+[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge 可以把一个 GitHub 仓库整理成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
 
@@ -74,6 +74,12 @@ skillforge build ~/code/my-tool --target portable --output ./dist
 
 ```bash
 skillforge build D4Vinci/Scrapling --target hermes --name skillforge-scrapling-hermes --output ./dist
+```
+
+生成适合 OpenClaw 的结构：
+
+```bash
+skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist
 ```
 
 ## 输出结构
