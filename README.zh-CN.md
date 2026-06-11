@@ -3,7 +3,7 @@
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/xiaokillua/skillforge)](https://github.com/xiaokillua/skillforge/releases)
 
-[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
+[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md) | [Codex 示例](examples/CODEX_SHOWCASE.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge 可以把一个 GitHub 仓库整理成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
 
@@ -31,6 +31,20 @@ SkillForge 会：
 - `openclaw`：`skills/<name>`
 - `hermes`：`skills/<name>`
 - `all`：一次导出全部
+
+## 兼容性快照
+
+这份快照基于 `2026-06-12` 的验证记录，SkillForge 版本为 `v0.2.0`。
+
+| 运行时 | 状态 | 验证级别 |
+| --- | --- | --- |
+| Codex | 支持 | 已做真实运行验证 |
+| Claude Code | 支持 | 已做打包验证 |
+| GitHub Copilot | 支持 | 已做结构验证 |
+| OpenClaw | 支持 | 已做真实运行验证 |
+| Hermes | 支持 | 已做真实运行验证 |
+
+完整说明见 [运行时兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md)。
 
 ## 安装
 

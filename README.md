@@ -3,7 +3,7 @@
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/xiaokillua/skillforge)](https://github.com/xiaokillua/skillforge/releases)
 
-[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Claude Showcase](examples/CLAUDE_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
+[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Compatibility](docs/RUNTIME_COMPATIBILITY.md) | [Codex Showcase](examples/CODEX_SHOWCASE.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Claude Showcase](examples/CLAUDE_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge turns a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
 
@@ -32,6 +32,20 @@ SkillForge bridges that gap:
 - `openclaw`: `skills/<name>`
 - `hermes`: `skills/<name>`
 - `all`: generate every layout in one run
+
+## Compatibility Snapshot
+
+Validated on `2026-06-12` with SkillForge `v0.2.0`.
+
+| Runtime | Status | Validation |
+| --- | --- | --- |
+| Codex | Supported | Runtime validated |
+| Claude Code | Supported | Packaging validated |
+| GitHub Copilot | Supported | Layout validated |
+| OpenClaw | Supported | Runtime validated |
+| Hermes | Supported | Runtime validated |
+
+See the full matrix in [Runtime Compatibility](docs/RUNTIME_COMPATIBILITY.md).
 
 ## Install
 

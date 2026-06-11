@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Add `build --verify` so packaging can validate generated layouts immediately in the same command.
+- Add runtime compatibility documentation and a concrete Codex showcase.
 
 ## 0.2.0 - 2026-06-12
 
