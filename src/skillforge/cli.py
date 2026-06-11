@@ -9,6 +9,7 @@ from . import __version__
 from .analyzer import inspect_source
 from .generator import TARGETS
 from .packager import build_packages
+from .verifier import VERIFY_TARGETS, verify_skill
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -19,6 +20,8 @@ def main(argv: list[str] | None = None) -> int:
         return _inspect(args)
     if args.command == "build":
         return _build(args)
+    if args.command == "verify":
+        return _verify(args)
     if args.command == "version":
         print(__version__)
         return 0
@@ -54,6 +57,17 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Allow packaging even when the audit finds high-risk patterns",
     )
+
+    verify_parser = subparsers.add_parser("verify", help="Validate a generated skill bundle or layout.")
+    verify_parser.add_argument("path", help="Path to a generated skill directory, build output directory, or .skill archive")
+    verify_parser.add_argument(
+        "--target",
+        choices=sorted(VERIFY_TARGETS),
+        default="auto",
+        help="Verification target. Use auto to infer from the path.",
+    )
+    verify_parser.add_argument("--name", help="Select a specific skill name when the directory contains multiple skills")
+    verify_parser.add_argument("--json", action="store_true", help="Print JSON instead of a human summary")
 
     subparsers.add_parser("version", help="Print the SkillForge version")
     return parser
@@ -109,3 +123,27 @@ def _build(args: argparse.Namespace) -> int:
     for item in result.outputs:
         print(f"- {item}")
     return 0
+
+
+def _verify(args: argparse.Namespace) -> int:
+    try:
+        report = verify_skill(Path(args.path), target=args.target, name=args.name)
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+    if args.json:
+        print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+        return 0 if not report.has_errors else 2
+
+    print(f"Verified skill '{report.skill_name}'")
+    print(f"Target: {report.target}{' (archive)' if report.archive else ''}")
+    print(f"Status: {report.status}")
+    print(f"Path: {report.path}")
+    if report.findings:
+        print("Findings:")
+        for finding in report.findings:
+            print(f"- [{finding.severity.upper()}] {finding.path}: {finding.message}")
+    else:
+        print("Findings: none")
+    return 0 if not report.has_errors else 2

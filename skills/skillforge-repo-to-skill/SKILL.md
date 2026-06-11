@@ -17,8 +17,9 @@ Use this skill when the user wants to package a repository as an agent skill ins
 1. Run `skillforge inspect SOURCE` to understand the repo first.
 2. Review the extracted install commands, usage commands, and audit severity.
 3. Run `skillforge build SOURCE --target TARGET --output DIR`.
-4. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
-5. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
+4. Run `skillforge verify PATH --target TARGET` against the generated result before installation.
+5. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
+6. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
 
 ## Common Commands
 
@@ -44,6 +45,12 @@ Build a Claude Code-ready layout:
 
 ```bash
 skillforge build owner/repo --target claude --output ./dist
+```
+
+Verify the generated bundle:
+
+```bash
+skillforge verify ./dist --target claude
 ```
 
 ## Safety Notes

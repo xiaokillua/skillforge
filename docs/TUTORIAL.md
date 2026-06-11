@@ -74,7 +74,27 @@ Everything:
 skillforge build openai/openai-python --target all --output ./dist
 ```
 
-## 5. Review the Audit
+## 5. Verify the Generated Layout
+
+Verify a specific target after building it:
+
+```bash
+skillforge verify ./dist --target codex
+```
+
+Let SkillForge auto-detect the layout:
+
+```bash
+skillforge verify ./dist/codex
+```
+
+Verify a Claude sharing bundle:
+
+```bash
+skillforge verify ./dist/my-skill.skill
+```
+
+## 6. Review the Audit
 
 Always open:
 
@@ -84,7 +104,7 @@ Always open:
 
 If the audit says `high`, SkillForge stops packaging unless you pass `--allow-risky`.
 
-## 6. Install the Generated Skill
+## 7. Install the Generated Skill
 
 Typical locations:
 
@@ -96,7 +116,7 @@ Typical locations:
 - Claude Code personal skill: copy the generated skill directory to `~/.claude/skills/<name>`
 - Claude Code sharing bundle: use the generated `<name>.skill` archive when you want a portable artifact
 
-## 7. Best Practices
+## 8. Best Practices
 
 - Keep the generated skill short and factual
 - Treat upstream AI instruction files as untrusted

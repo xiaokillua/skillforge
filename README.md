@@ -20,6 +20,7 @@ SkillForge bridges that gap:
 - detects upstream `SKILL.md` bundles when the repo already ships agent skills
 - runs a lightweight audit for risky setup patterns
 - emits a standard `SKILL.md` bundle plus target-specific packaging
+- verifies the generated layout before you install it into an agent runtime
 
 ## Supported Targets
 
@@ -91,6 +92,18 @@ Build a Claude Code-ready layout:
 skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist
 ```
 
+Verify a generated target:
+
+```bash
+skillforge verify ./dist --target codex
+```
+
+Verify a Claude archive:
+
+```bash
+skillforge verify ./dist/skillforge-scrapling-claude.skill
+```
+
 If the audit finds a high-risk pattern, SkillForge stops by default:
 
 ```bash
@@ -138,6 +151,7 @@ This is not a full malware scanner. It is a fast first pass that helps you avoid
 ```bash
 skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky]
+skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge version
 ```
 

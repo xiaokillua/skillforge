@@ -74,7 +74,27 @@ skillforge build openai/openai-python --target hermes --output ./dist
 skillforge build openai/openai-python --target all --output ./dist
 ```
 
-## 5. 看审计报告
+## 5. 先验证生成结果
+
+生成后先验证目标平台结构：
+
+```bash
+skillforge verify ./dist --target codex
+```
+
+也可以让 SkillForge 自动识别结构：
+
+```bash
+skillforge verify ./dist/codex
+```
+
+如果是 Claude 的分享压缩包，也可以直接检查：
+
+```bash
+skillforge verify ./dist/my-skill.skill
+```
+
+## 6. 看审计报告
 
 至少要打开这几个文件：
 
@@ -84,7 +104,7 @@ skillforge build openai/openai-python --target all --output ./dist
 
 如果审计等级是 `high`，SkillForge 默认不会继续打包，除非你手动加 `--allow-risky`。
 
-## 6. 安装生成好的 Skill
+## 7. 安装生成好的 Skill
 
 常见位置：
 
@@ -96,7 +116,7 @@ skillforge build openai/openai-python --target all --output ./dist
 - Claude Code 个人 skill：把生成出来的 skill 目录复制到 `~/.claude/skills/<name>`
 - Claude Code 分发包：如果你只是想分享或归档，可以直接使用生成的 `<name>.skill` 压缩包
 
-## 7. 推荐做法
+## 8. 推荐做法
 
 - 保持生成的 skill 短、小、可验证
 - 不要把上游 AI 指令文件直接当可信内容

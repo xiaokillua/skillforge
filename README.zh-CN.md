@@ -19,6 +19,7 @@ SkillForge 会：
 - 对上游文本文件做一个轻量安全审计
 - 生成标准 `SKILL.md` + `references/`
 - 再按目标平台导出不同目录结构
+- 在安装前再检查生成结果是否符合目标平台的布局要求
 
 ## 支持的导出目标
 
@@ -88,6 +89,18 @@ skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling
 skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist
 ```
 
+验证一个生成结果：
+
+```bash
+skillforge verify ./dist --target codex
+```
+
+验证一个 Claude `.skill` 压缩包：
+
+```bash
+skillforge verify ./dist/skillforge-scrapling-claude.skill
+```
+
 ## 输出结构
 
 生成后的 skill 默认会包含：
@@ -131,6 +144,7 @@ skillforge build owner/risky-repo --output ./dist --allow-risky
 ```bash
 skillforge inspect SOURCE [--json] [--name NAME]
 skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky]
+skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge version
 ```
 
