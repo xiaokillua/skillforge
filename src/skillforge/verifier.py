@@ -6,6 +6,8 @@ import zipfile
 from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 
+from .generator import PACKAGE_TARGETS
+
 
 VERIFY_TARGETS = {"auto", "portable", "claude", "codex", "copilot", "openclaw", "hermes"}
 
@@ -78,6 +80,43 @@ def verify_skill(path: Path, target: str = "auto", name: str | None = None) -> V
 
     skill_root, detected_target = _locate_skill_root(candidate, normalized, name)
     return _verify_directory(skill_root, detected_target)
+
+
+def verify_build_outputs(output_dir: Path, target: str, name: str | None = None) -> list[VerificationReport]:
+    normalized = target.lower()
+    if normalized == "all":
+        reports: list[VerificationReport] = []
+        for item in PACKAGE_TARGETS:
+            reports.extend(verify_build_outputs(output_dir / item, item, name=name))
+        return reports
+
+    if normalized not in PACKAGE_TARGETS:
+        raise ValueError(f"Unknown verification target: {target}")
+
+    base_dir = output_dir.expanduser().resolve()
+    report = verify_skill(base_dir, target=normalized, name=name)
+    reports = [report]
+
+    if normalized == "claude":
+        archive_path = base_dir / f"{report.skill_name}.skill"
+        if archive_path.exists():
+            reports.append(verify_skill(archive_path, target="claude"))
+        else:
+            missing_archive = VerificationReport(
+                target="claude",
+                skill_name=report.skill_name,
+                path=str(archive_path),
+                archive=True,
+                findings=[
+                    VerificationFinding(
+                        "error",
+                        str(archive_path),
+                        "Expected Claude archive was not found after packaging.",
+                    )
+                ],
+            )
+            reports.append(missing_archive)
+    return reports
 
 
 def _locate_skill_root(base: Path, target: str, name: str | None) -> tuple[Path, str]:

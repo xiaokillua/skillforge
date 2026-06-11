@@ -6,7 +6,7 @@ import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
-from .generator import TARGETS, skill_files
+from .generator import PACKAGE_TARGETS, TARGETS, skill_files
 from .models import RepoProfile, SEVERITY_ORDER
 from .utils import ensure_parent, write_json, write_text
 
@@ -33,7 +33,7 @@ def build_packages(
     outputs: list[Path] = []
 
     if normalized == "all":
-        for item in ("portable", "claude", "codex", "copilot", "openclaw", "hermes"):
+        for item in PACKAGE_TARGETS:
             outputs.extend(_build_one(profile, output_dir / item, item))
     else:
         outputs.extend(_build_one(profile, output_dir, normalized))

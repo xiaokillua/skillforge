@@ -72,40 +72,40 @@ skillforge inspect openai/openai-python
 Build every target:
 
 ```bash
-skillforge build openai/openai-python --output ./dist --target all
+skillforge build openai/openai-python --output ./dist --target all --verify
 ```
 
 Build only a Codex-compatible layout:
 
 ```bash
-skillforge build openai/openai-python --target codex --output ./dist
+skillforge build openai/openai-python --target codex --output ./dist --verify
 ```
 
 Build from a local checkout:
 
 ```bash
-skillforge build ~/code/my-tool --target portable --output ./dist
+skillforge build ~/code/my-tool --target portable --output ./dist --verify
 ```
 
 Build a Hermes-ready layout:
 
 ```bash
-skillforge build D4Vinci/Scrapling --target hermes --name skillforge-scrapling-hermes --output ./dist
+skillforge build D4Vinci/Scrapling --target hermes --name skillforge-scrapling-hermes --output ./dist --verify
 ```
 
 Build an OpenClaw-ready layout:
 
 ```bash
-skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist
+skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist --verify
 ```
 
 Build a Claude Code-ready layout:
 
 ```bash
-skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist
+skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist --verify
 ```
 
-Verify a generated target:
+Verify a generated target after the fact:
 
 ```bash
 skillforge verify ./dist --target codex
@@ -126,7 +126,7 @@ skillforge build owner/risky-repo --output ./dist
 Override only after review:
 
 ```bash
-skillforge build owner/risky-repo --output ./dist --allow-risky
+skillforge build owner/risky-repo --output ./dist --allow-risky --verify
 ```
 
 ## Output Layout
@@ -163,7 +163,7 @@ This is not a full malware scanner. It is a fast first pass that helps you avoid
 
 ```bash
 skillforge inspect SOURCE [--json] [--name NAME]
-skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky]
+skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge version
 ```

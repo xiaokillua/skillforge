@@ -16,8 +16,8 @@ Use this skill when the user wants to package a repository as an agent skill ins
 
 1. Run `skillforge inspect SOURCE` to understand the repo first.
 2. Review the extracted install commands, usage commands, and audit severity.
-3. Run `skillforge build SOURCE --target TARGET --output DIR`.
-4. Run `skillforge verify PATH --target TARGET` against the generated result before installation.
+3. Run `skillforge build SOURCE --target TARGET --output DIR --verify` as the default path.
+4. If you need a second pass later, run `skillforge verify PATH --target TARGET` against the generated result.
 5. Open the generated `references/SECURITY-AUDIT.md` before trusting upstream scripts.
 6. Deliver the target-specific folder, and use the `.skill` archive only as an optional sharing artifact.
 
@@ -32,19 +32,19 @@ skillforge inspect owner/repo
 Build everything:
 
 ```bash
-skillforge build owner/repo --target all --output ./dist
+skillforge build owner/repo --target all --output ./dist --verify
 ```
 
 Build a Codex-ready layout:
 
 ```bash
-skillforge build owner/repo --target codex --output ./dist
+skillforge build owner/repo --target codex --output ./dist --verify
 ```
 
 Build a Claude Code-ready layout:
 
 ```bash
-skillforge build owner/repo --target claude --output ./dist
+skillforge build owner/repo --target claude --output ./dist --verify
 ```
 
 Verify the generated bundle:

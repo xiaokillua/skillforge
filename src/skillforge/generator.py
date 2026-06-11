@@ -8,6 +8,7 @@ from .utils import yaml_quote
 
 
 TARGETS = {"portable", "claude", "codex", "copilot", "openclaw", "hermes", "all"}
+PACKAGE_TARGETS = ("portable", "claude", "codex", "copilot", "openclaw", "hermes")
 
 
 def skill_files(profile: RepoProfile, target: str) -> dict[str, str]:

@@ -9,7 +9,7 @@ from . import __version__
 from .analyzer import inspect_source
 from .generator import TARGETS
 from .packager import build_packages
-from .verifier import VERIFY_TARGETS, verify_skill
+from .verifier import VERIFY_TARGETS, verify_build_outputs, verify_skill
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -56,6 +56,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--allow-risky",
         action="store_true",
         help="Allow packaging even when the audit finds high-risk patterns",
+    )
+    build_parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="Validate the generated layout immediately after packaging",
     )
 
     verify_parser = subparsers.add_parser("verify", help="Validate a generated skill bundle or layout.")
@@ -122,7 +127,27 @@ def _build(args: argparse.Namespace) -> int:
     print("Outputs:")
     for item in result.outputs:
         print(f"- {item}")
-    return 0
+
+    if not args.verify:
+        return 0
+
+    try:
+        reports = verify_build_outputs(
+            output_dir=Path(args.output),
+            target=args.target,
+            name=result.profile.slug,
+        )
+    except Exception as exc:
+        print(str(exc), file=sys.stderr)
+        return 3
+
+    print("Verification:")
+    for report in reports:
+        label = f"{report.target}{' archive' if report.archive else ''}"
+        print(f"- [{report.status.upper()}] {label}: {report.path}")
+        for finding in report.findings:
+            print(f"  - [{finding.severity.upper()}] {finding.path}: {finding.message}")
+    return 0 if all(not report.has_errors for report in reports) else 3
 
 
 def _verify(args: argparse.Namespace) -> int:

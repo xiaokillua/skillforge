@@ -69,40 +69,40 @@ skillforge inspect openai/openai-python
 导出全部目标：
 
 ```bash
-skillforge build openai/openai-python --output ./dist --target all
+skillforge build openai/openai-python --output ./dist --target all --verify
 ```
 
 只导出 Codex：
 
 ```bash
-skillforge build openai/openai-python --target codex --output ./dist
+skillforge build openai/openai-python --target codex --output ./dist --verify
 ```
 
 从本地仓库生成：
 
 ```bash
-skillforge build ~/code/my-tool --target portable --output ./dist
+skillforge build ~/code/my-tool --target portable --output ./dist --verify
 ```
 
 生成适合 Hermes 的结构：
 
 ```bash
-skillforge build D4Vinci/Scrapling --target hermes --name skillforge-scrapling-hermes --output ./dist
+skillforge build D4Vinci/Scrapling --target hermes --name skillforge-scrapling-hermes --output ./dist --verify
 ```
 
 生成适合 OpenClaw 的结构：
 
 ```bash
-skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist
+skillforge build D4Vinci/Scrapling --target openclaw --name skillforge-scrapling-openclaw --output ./dist --verify
 ```
 
 生成适合 Claude Code 的结构：
 
 ```bash
-skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist
+skillforge build D4Vinci/Scrapling --target claude --name skillforge-scrapling-claude --output ./dist --verify
 ```
 
-验证一个生成结果：
+如果你想在生成之后单独验证，也可以：
 
 ```bash
 skillforge verify ./dist --target codex
@@ -147,7 +147,7 @@ SkillForge 默认比较保守：
 如果你已经人工确认过，可以再加：
 
 ```bash
-skillforge build owner/risky-repo --output ./dist --allow-risky
+skillforge build owner/risky-repo --output ./dist --allow-risky --verify
 ```
 
 这不是完整的恶意代码扫描器，但它能挡住一批最常见、最不该被直接信任的上游安装方式。
@@ -156,7 +156,7 @@ skillforge build owner/risky-repo --output ./dist --allow-risky
 
 ```bash
 skillforge inspect SOURCE [--json] [--name NAME]
-skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky]
+skillforge build SOURCE [--target TARGET] [--output DIR] [--name NAME] [--allow-risky] [--verify]
 skillforge verify PATH [--target TARGET] [--name NAME] [--json]
 skillforge version
 ```

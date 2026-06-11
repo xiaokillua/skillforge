@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from skillforge.analyzer import analyze_repository
 from skillforge.models import SourceSnapshot
 from skillforge.packager import build_packages
-from skillforge.verifier import verify_skill
+from skillforge.verifier import verify_build_outputs, verify_skill
 
 
 def make_profile(tmp_path: Path):
@@ -78,6 +78,23 @@ class VerifierTests(unittest.TestCase):
             self.assertFalse(report.has_errors)
             self.assertTrue(report.archive)
             self.assertEqual(report.target, "claude")
+
+    def test_verify_build_outputs_for_all_targets(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            profile = make_profile(tmp_path)
+            build_packages(profile, tmp_path / "dist", "all")
+
+            reports = verify_build_outputs(tmp_path / "dist", "all", name=profile.slug)
+            labels = {(report.target, report.archive) for report in reports}
+            self.assertIn(("portable", False), labels)
+            self.assertIn(("claude", False), labels)
+            self.assertIn(("claude", True), labels)
+            self.assertIn(("codex", False), labels)
+            self.assertIn(("copilot", False), labels)
+            self.assertIn(("openclaw", False), labels)
+            self.assertIn(("hermes", False), labels)
+            self.assertTrue(all(not report.has_errors for report in reports))
 
     def test_verify_missing_required_file_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

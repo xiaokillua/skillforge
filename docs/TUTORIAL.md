@@ -43,7 +43,7 @@ This helps you confirm:
 ## 3. Generate a Portable Skill
 
 ```bash
-skillforge build openai/openai-python --target portable --output ./dist
+skillforge build openai/openai-python --target portable --output ./dist --verify
 ```
 
 This creates a standard Agent Skills directory that many runtimes can read directly.
@@ -53,40 +53,42 @@ This creates a standard Agent Skills directory that many runtimes can read direc
 Codex:
 
 ```bash
-skillforge build openai/openai-python --target codex --output ./dist
+skillforge build openai/openai-python --target codex --output ./dist --verify
 ```
 
 Copilot:
 
 ```bash
-skillforge build openai/openai-python --target copilot --output ./dist
+skillforge build openai/openai-python --target copilot --output ./dist --verify
 ```
 
 Claude:
 
 ```bash
-skillforge build openai/openai-python --target claude --output ./dist
+skillforge build openai/openai-python --target claude --output ./dist --verify
 ```
 
 OpenClaw:
 
 ```bash
-skillforge build openai/openai-python --target openclaw --output ./dist
+skillforge build openai/openai-python --target openclaw --output ./dist --verify
 ```
 
 Hermes:
 
 ```bash
-skillforge build openai/openai-python --target hermes --output ./dist
+skillforge build openai/openai-python --target hermes --output ./dist --verify
 ```
 
 Everything:
 
 ```bash
-skillforge build openai/openai-python --target all --output ./dist
+skillforge build openai/openai-python --target all --output ./dist --verify
 ```
 
 ## 5. Verify the Generated Layout
+
+If you already used `build --verify`, SkillForge has already run these checks for you.
 
 Verify a specific target after building it:
 

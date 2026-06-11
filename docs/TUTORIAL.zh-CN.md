@@ -43,7 +43,7 @@ skillforge inspect openai/openai-python --json
 ## 3. 生成通用 Skill
 
 ```bash
-skillforge build openai/openai-python --target portable --output ./dist
+skillforge build openai/openai-python --target portable --output ./dist --verify
 ```
 
 这个结果是标准 Agent Skills 目录，很多环境都能直接用。
@@ -53,40 +53,42 @@ skillforge build openai/openai-python --target portable --output ./dist
 Codex：
 
 ```bash
-skillforge build openai/openai-python --target codex --output ./dist
+skillforge build openai/openai-python --target codex --output ./dist --verify
 ```
 
 Copilot：
 
 ```bash
-skillforge build openai/openai-python --target copilot --output ./dist
+skillforge build openai/openai-python --target copilot --output ./dist --verify
 ```
 
 Claude：
 
 ```bash
-skillforge build openai/openai-python --target claude --output ./dist
+skillforge build openai/openai-python --target claude --output ./dist --verify
 ```
 
 OpenClaw：
 
 ```bash
-skillforge build openai/openai-python --target openclaw --output ./dist
+skillforge build openai/openai-python --target openclaw --output ./dist --verify
 ```
 
 Hermes：
 
 ```bash
-skillforge build openai/openai-python --target hermes --output ./dist
+skillforge build openai/openai-python --target hermes --output ./dist --verify
 ```
 
 全部一起导出：
 
 ```bash
-skillforge build openai/openai-python --target all --output ./dist
+skillforge build openai/openai-python --target all --output ./dist --verify
 ```
 
 ## 5. 先验证生成结果
+
+如果你已经用了 `build --verify`，这些检查 SkillForge 已经顺手帮你跑过一次了。
 
 生成后先验证目标平台结构：
 

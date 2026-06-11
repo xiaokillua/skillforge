@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add `build --verify` so packaging can validate generated layouts immediately in the same command.
+
 ## 0.2.0 - 2026-06-12
 
 - Align Claude packaging with the official `.claude/skills/<name>` layout.
