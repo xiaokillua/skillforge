@@ -8,6 +8,18 @@ cd skillforge
 python3 -m pip install -e .
 ```
 
+Direct install from GitHub:
+
+```bash
+python3 -m pip install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
+CLI-style install with `pipx`:
+
+```bash
+pipx install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
 ## 2. Inspect Before You Build
 
 Start by looking at what SkillForge detected:

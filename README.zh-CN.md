@@ -45,6 +45,18 @@ python3 -m pip install -e .
 skillforge version
 ```
 
+如果你不想先 clone，也可以直接安装：
+
+```bash
+python3 -m pip install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
+如果你想把它作为隔离的命令行工具安装：
+
+```bash
+pipx install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
 ## 快速开始
 
 先检查一个仓库：
@@ -157,9 +169,17 @@ skillforge version
 ## 开发
 
 ```bash
-python3 -m pip install -e .
+python3 -m pip install -e ".[dev]"
 python3 -m unittest discover -s tests
+python3 -m build
 ```
+
+## 发布流程
+
+- CI 现在会测试 Python `3.11`、`3.12`、`3.13`
+- CI 也会构建 `sdist` 和 `wheel`，并执行 `twine check`
+- 发布 GitHub Release 时，会自动附加打包产物
+- 如果你在 PyPI 配好 Trusted Publisher，并设置仓库变量 `PYPI_PUBLISH=true`，就可以自动发布到 PyPI
 
 ## 后续计划
 

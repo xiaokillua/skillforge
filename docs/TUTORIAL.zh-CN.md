@@ -8,6 +8,18 @@ cd skillforge
 python3 -m pip install -e .
 ```
 
+也可以直接从 GitHub 安装：
+
+```bash
+python3 -m pip install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
+如果你想把它当成独立 CLI 工具装起来：
+
+```bash
+pipx install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
 ## 2. 先检查，再生成
 
 先看 SkillForge 识别出了什么：

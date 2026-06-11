@@ -48,6 +48,18 @@ Check it:
 skillforge version
 ```
 
+Install without cloning:
+
+```bash
+python3 -m pip install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
+For an isolated CLI install:
+
+```bash
+pipx install "git+https://github.com/xiaokillua/skillforge.git"
+```
+
 ## Quick Start
 
 Inspect a repo:
@@ -164,9 +176,17 @@ skillforge version
 ## Development
 
 ```bash
-python3 -m pip install -e .
+python3 -m pip install -e ".[dev]"
 python3 -m unittest discover -s tests
+python3 -m build
 ```
+
+## Release Flow
+
+- CI now tests Python `3.11`, `3.12`, and `3.13`
+- CI also builds `sdist` and `wheel`, then runs `twine check`
+- Release artifacts are attached automatically to GitHub Releases
+- PyPI publishing is supported through Trusted Publishing when you configure a PyPI publisher and set the repository variable `PYPI_PUBLISH=true`
 
 ## Roadmap
 

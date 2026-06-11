@@ -6,6 +6,7 @@
 - Keep `.skill` archives as an optional sharing artifact instead of the primary Claude install path.
 - Add Claude showcase documentation in English and Chinese.
 - Add a `verify` command for validating generated skill layouts and Claude archives.
+- Add packaging and release automation for wheels, sdists, GitHub Releases, and optional PyPI trusted publishing.
 
 ## 0.1.0
 
