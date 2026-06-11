@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.2.0 - 2026-06-12
+
 - Align Claude packaging with the official `.claude/skills/<name>` layout.
 - Keep `.skill` archives as an optional sharing artifact instead of the primary Claude install path.
 - Add Claude showcase documentation in English and Chinese.

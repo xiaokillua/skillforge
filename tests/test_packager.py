@@ -7,6 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
+from skillforge import __version__
 from skillforge.analyzer import analyze_repository
 from skillforge.models import SourceSnapshot
 from skillforge.packager import build_packages
@@ -82,7 +83,7 @@ class PackagerTests(unittest.TestCase):
             self.assertIn('description: "Portable workflow for using demo-tool.', claude_text)
             self.assertNotIn("compatibility:", claude_text)
             self.assertNotIn("metadata:", claude_text)
-            self.assertIn('version: "0.1.0"', hermes_text)
+            self.assertIn(f'version: "{__version__}"', hermes_text)
             self.assertIn('author: "SkillForge"', hermes_text)
             self.assertIn("platforms: [linux, macos, windows]", hermes_text)
             self.assertIn("hermes:", hermes_text)

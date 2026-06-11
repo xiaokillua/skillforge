@@ -1,6 +1,7 @@
 # SkillForge
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/xiaokillua/skillforge)](https://github.com/xiaokillua/skillforge/releases)
 
 [English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
