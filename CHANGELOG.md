@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Nothing yet.
+- Add a launch playbook and copy-ready launch post templates in English and Chinese.
+- Add a README overview visual for first-visit conversion.
 
 ## 0.3.0 - 2026-06-12
 

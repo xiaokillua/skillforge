@@ -1,0 +1,130 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" rx="24" fill="#0B1020"/>
+  <rect x="40" y="40" width="1200" height="640" rx="20" fill="#10172A" stroke="#24304A"/>
+
+  <text x="72" y="104" fill="#F8FAFC" font-family="Inter, system-ui, sans-serif" font-size="36" font-weight="700">
+    SkillForge
+  </text>
+  <text x="72" y="142" fill="#B8C4DC" font-family="Inter, system-ui, sans-serif" font-size="20">
+    Compile GitHub repositories into audited, portable agent skills
+  </text>
+
+  <rect x="72" y="182" width="344" height="420" rx="18" fill="#0D1324" stroke="#24304A"/>
+  <rect x="468" y="182" width="344" height="420" rx="18" fill="#0D1324" stroke="#24304A"/>
+  <rect x="864" y="182" width="344" height="420" rx="18" fill="#0D1324" stroke="#24304A"/>
+
+  <circle cx="100" cy="212" r="6" fill="#FB7185"/>
+  <circle cx="120" cy="212" r="6" fill="#FBBF24"/>
+  <circle cx="140" cy="212" r="6" fill="#34D399"/>
+
+  <circle cx="496" cy="212" r="6" fill="#FB7185"/>
+  <circle cx="516" cy="212" r="6" fill="#FBBF24"/>
+  <circle cx="536" cy="212" r="6" fill="#34D399"/>
+
+  <circle cx="892" cy="212" r="6" fill="#FB7185"/>
+  <circle cx="912" cy="212" r="6" fill="#FBBF24"/>
+  <circle cx="932" cy="212" r="6" fill="#34D399"/>
+
+  <text x="168" y="218" fill="#8FA3C7" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">
+    runtime check
+  </text>
+  <text x="564" y="218" fill="#8FA3C7" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">
+    build and verify
+  </text>
+  <text x="960" y="218" fill="#8FA3C7" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600">
+    report output
+  </text>
+
+  <text x="96" y="270" fill="#A7F3D0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
+    $ skillforge doctor
+  </text>
+  <text x="96" y="316" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    Codex        READY
+  </text>
+  <text x="96" y="348" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    OpenClaw     READY
+  </text>
+  <text x="96" y="380" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    Hermes       READY
+  </text>
+  <text x="96" y="412" fill="#CBD5E1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    Claude Code  MISSING
+  </text>
+  <text x="96" y="444" fill="#CBD5E1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    Copilot      MISSING
+  </text>
+  <text x="96" y="510" fill="#7DD3FC" font-family="Inter, system-ui, sans-serif" font-size="15">
+    Checks the runtimes you can use right now.
+  </text>
+  <text x="96" y="536" fill="#7DD3FC" font-family="Inter, system-ui, sans-serif" font-size="15">
+    Emits markdown or JSON for sharing.
+  </text>
+
+  <text x="492" y="270" fill="#A7F3D0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
+    $ skillforge build D4Vinci/Scrapling
+  </text>
+  <text x="492" y="298" fill="#A7F3D0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
+    --target all --verify
+  </text>
+  <text x="492" y="344" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    [OK] portable
+  </text>
+  <text x="492" y="376" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    [OK] claude
+  </text>
+  <text x="492" y="408" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    [OK] codex
+  </text>
+  <text x="492" y="440" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    [OK] copilot
+  </text>
+  <text x="492" y="472" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    [OK] openclaw
+  </text>
+  <text x="492" y="504" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    [OK] hermes
+  </text>
+  <text x="492" y="550" fill="#C4B5FD" font-family="Inter, system-ui, sans-serif" font-size="15">
+    One command to inspect, package, and validate
+  </text>
+  <text x="492" y="576" fill="#C4B5FD" font-family="Inter, system-ui, sans-serif" font-size="15">
+    the same repo across multiple agent runtimes.
+  </text>
+
+  <text x="888" y="270" fill="#A7F3D0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
+    $ skillforge report D4Vinci/Scrapling
+  </text>
+  <text x="888" y="298" fill="#A7F3D0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
+    --target all --json
+  </text>
+  <text x="888" y="344" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    {
+  </text>
+  <text x="908" y="376" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    "skillforge_version": "0.3.0",
+  </text>
+  <text x="908" y="408" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    "target": "all",
+  </text>
+  <text x="908" y="440" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    "verification_reports": [...],
+  </text>
+  <text x="908" y="472" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    "doctor_report": {...}
+  </text>
+  <text x="888" y="504" fill="#E2E8F0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">
+    }
+  </text>
+  <text x="888" y="550" fill="#FCA5A5" font-family="Inter, system-ui, sans-serif" font-size="15">
+    Ships a shareable markdown report and a machine-
+  </text>
+  <text x="888" y="576" fill="#FCA5A5" font-family="Inter, system-ui, sans-serif" font-size="15">
+    readable JSON artifact for docs, CI, or demos.
+  </text>
+
+  <rect x="72" y="630" width="248" height="20" rx="10" fill="#17223A"/>
+  <rect x="72" y="630" width="138" height="20" rx="10" fill="#22C55E"/>
+  <text x="336" y="645" fill="#9FB1CF" font-family="Inter, system-ui, sans-serif" font-size="14">
+    launch-ready: docs, release, showcases, reports
+  </text>
+</svg>

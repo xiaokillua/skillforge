@@ -5,13 +5,15 @@
 [![License](https://img.shields.io/github/license/xiaokillua/skillforge)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)](pyproject.toml)
 
-[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Compatibility](docs/RUNTIME_COMPATIBILITY.md) | [Sample Report](examples/SCRAPLING_REPORT.md) | [Sample JSON](examples/SCRAPLING_REPORT.json) | [Contributing](CONTRIBUTING.md) | [Security](SECURITY.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
+[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Compatibility](docs/RUNTIME_COMPATIBILITY.md) | [Launch Playbook](docs/LAUNCH_PLAYBOOK.md) | [Launch Posts](docs/LAUNCH_POSTS.md) | [Sample Report](examples/SCRAPLING_REPORT.md) | [Sample JSON](examples/SCRAPLING_REPORT.json) | [Contributing](CONTRIBUTING.md) | [Security](SECURITY.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge compiles a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
 
 It is built for one job: take a public repo, extract the setup and usage knowledge an agent actually needs, run a lightweight safety audit, then package the result into target-specific skill layouts without requiring an API key.
 
 Validated runtime paths already exist for `Codex`, `Hermes`, and `OpenClaw`, while `Claude` and `Copilot` are packaging-verified and ready for local install.
+
+![SkillForge overview](assets/skillforge-overview.svg)
 
 ## Why SkillForge
 
@@ -82,6 +84,8 @@ See the full matrix in [Runtime Compatibility](docs/RUNTIME_COMPATIBILITY.md).
 - [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md)
 - [Sample markdown report](examples/SCRAPLING_REPORT.md)
 - [Sample JSON report](examples/SCRAPLING_REPORT.json)
+- [Launch playbook](docs/LAUNCH_PLAYBOOK.md)
+- [Launch posts](docs/LAUNCH_POSTS.md)
 
 ## Install
 

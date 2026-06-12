@@ -5,13 +5,15 @@
 [![License](https://img.shields.io/github/license/xiaokillua/skillforge)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)](pyproject.toml)
 
-[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md) | [报告样例](examples/SCRAPLING_REPORT.md) | [JSON 样例](examples/SCRAPLING_REPORT.json) | [贡献指南](CONTRIBUTING.md) | [安全策略](SECURITY.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
+[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md) | [首发手册](docs/LAUNCH_PLAYBOOK.zh-CN.md) | [发布文案](docs/LAUNCH_POSTS.zh-CN.md) | [报告样例](examples/SCRAPLING_REPORT.md) | [JSON 样例](examples/SCRAPLING_REPORT.json) | [贡献指南](CONTRIBUTING.md) | [安全策略](SECURITY.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
 SkillForge 可以把一个 GitHub 仓库编译成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
 
 它解决的是一个很实际的问题：很多开源项目已经有很强的能力，但 agent 不知道应该怎么安装、怎么运行、哪些命令最常用、哪些脚本有风险。SkillForge 会把这些信息抽出来，再打包成标准 skill。
 
 目前已经对 `Codex`、`Hermes`、`OpenClaw` 做过真实运行验证；`Claude` 和 `Copilot` 这边已经做到了打包和结构层面的验证，可以直接继续本地安装。
+
+![SkillForge 总览图](assets/skillforge-overview.svg)
 
 ## 为什么是 SkillForge
 
@@ -81,6 +83,8 @@ SkillForge 会：
 - [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md)
 - [Markdown 报告样例](examples/SCRAPLING_REPORT.md)
 - [JSON 报告样例](examples/SCRAPLING_REPORT.json)
+- [首发发布手册](docs/LAUNCH_PLAYBOOK.zh-CN.md)
+- [可直接复制的发布文案](docs/LAUNCH_POSTS.zh-CN.md)
 
 ## 安装
 
