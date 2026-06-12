@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "skillforge-agent"
-version = "0.2.0"
-description = "Turn GitHub repositories into audited, portable agent skills."
+version = "0.3.0"
+description = "Compile GitHub repositories into audited, portable agent skills."
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
@@ -21,13 +21,16 @@ keywords = [
   "copilot",
   "openclaw",
   "hermes",
-  "repo-to-skill"
+  "repo-to-skill",
+  "claude-code",
+  "ai-agents"
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
@@ -41,6 +44,8 @@ Homepage = "https://github.com/xiaokillua/skillforge"
 Documentation = "https://github.com/xiaokillua/skillforge#readme"
 Issues = "https://github.com/xiaokillua/skillforge/issues"
 Changelog = "https://github.com/xiaokillua/skillforge/blob/main/CHANGELOG.md"
+Tutorial = "https://github.com/xiaokillua/skillforge/blob/main/docs/TUTORIAL.md"
+Security = "https://github.com/xiaokillua/skillforge/blob/main/SECURITY.md"
 
 [project.optional-dependencies]
 dev = [

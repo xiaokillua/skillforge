@@ -2,11 +2,19 @@
 
 ## Unreleased
 
+- Nothing yet.
+
+## 0.3.0 - 2026-06-12
+
 - Add `build --verify` so packaging can validate generated layouts immediately in the same command.
 - Add runtime compatibility documentation and a concrete Codex showcase.
 - Add `doctor` for local runtime readiness checks across Codex, Claude, Copilot, OpenClaw, and Hermes.
 - Add `doctor --markdown` for shareable environment reports.
 - Add `report` to generate a combined markdown artifact from inspect, build, verify, and doctor.
+- Add `report --json` plus checked-in markdown and JSON sample reports.
+- Add automation for regenerating showcase report artifacts.
+- Add community health files, issue templates, and a pull request template for public collaboration.
+- Refresh the README and tutorial surface for a launch-ready public release.
 
 ## 0.2.0 - 2026-06-12
 

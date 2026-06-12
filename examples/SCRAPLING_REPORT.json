@@ -1,5 +1,5 @@
 {
-  "skillforge_version": "0.2.0",
+  "skillforge_version": "0.3.0",
   "source": "D4Vinci/Scrapling",
   "target": "all",
   "artifacts_dir": "/tmp/skillforge-report-sample/dist",
@@ -180,7 +180,7 @@
     }
   ],
   "doctor_report": {
-    "skillforge_version": "0.2.0",
+    "skillforge_version": "0.3.0",
     "workspace": "/workspace/skillforge",
     "home": "/Users/demo",
     "entries": [

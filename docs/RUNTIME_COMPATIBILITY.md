@@ -2,7 +2,7 @@
 
 This matrix summarizes what SkillForge has actually validated so far, not just what it can theoretically export.
 
-Validated with SkillForge `v0.2.0` on `2026-06-12`.
+Validated with SkillForge `v0.3.0` on `2026-06-12`.
 
 ## Snapshot
 

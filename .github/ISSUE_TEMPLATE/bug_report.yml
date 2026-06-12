@@ -1,0 +1,57 @@
+name: Bug report
+description: Report a reproducible problem in inspection, packaging, verification, doctor, or report output.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve SkillForge. Please include enough detail for us to reproduce the problem quickly.
+  - type: input
+    id: version
+    attributes:
+      label: SkillForge version
+      description: Run `skillforge version`
+      placeholder: 0.3.0
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - inspect
+        - build
+        - verify
+        - doctor
+        - report
+        - docs
+        - packaging
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: Paste the exact command you ran
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Repo used, runtime used, stack trace, or sample output

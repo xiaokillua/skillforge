@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest a new runtime, packaging flow, analysis feature, or developer workflow improvement.
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Clear requests are much easier to ship. Tell us what workflow you want to unlock and why it matters.
+  - type: input
+    id: target
+    attributes:
+      label: Target runtime or workflow
+      placeholder: claude, codex, copilot, openclaw, hermes, report, audit
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Links or examples
+      description: Comparable tools, runtime docs, or repos that motivate the feature

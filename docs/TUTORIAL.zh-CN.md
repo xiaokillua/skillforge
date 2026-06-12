@@ -134,6 +134,12 @@ skillforge report openai/openai-python --target all --artifacts ./dist --json --
 - [Markdown 报告样例](../examples/SCRAPLING_REPORT.md)
 - [JSON 报告样例](../examples/SCRAPLING_REPORT.json)
 
+如果你改了报告输出，也可以用这个脚本重新生成仓库里的样例：
+
+```bash
+python3 scripts/generate_example_reports.py
+```
+
 ## 7. 看审计报告
 
 至少要打开这几个文件：

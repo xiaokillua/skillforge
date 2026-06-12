@@ -134,6 +134,12 @@ There is also a checked-in sample generated from `D4Vinci/Scrapling`:
 - [Markdown sample](../examples/SCRAPLING_REPORT.md)
 - [JSON sample](../examples/SCRAPLING_REPORT.json)
 
+If you want to refresh those repo examples after changing report output:
+
+```bash
+python3 scripts/generate_example_reports.py
+```
+
 ## 7. Review the Audit
 
 Always open:

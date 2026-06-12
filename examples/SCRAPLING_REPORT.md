@@ -1,7 +1,7 @@
 # SkillForge Report
 
 - Generated on: `2026-06-12`
-- SkillForge version: `0.2.0`
+- SkillForge version: `0.3.0`
 - Source: `https://github.com/D4Vinci/Scrapling.git`
 - Target: `all`
 - Skill name: `scrapling`

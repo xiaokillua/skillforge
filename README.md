@@ -2,12 +2,38 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/xiaokillua/skillforge)](https://github.com/xiaokillua/skillforge/releases)
+[![License](https://img.shields.io/github/license/xiaokillua/skillforge)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](pyproject.toml)
 
-[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Compatibility](docs/RUNTIME_COMPATIBILITY.md) | [Codex Showcase](examples/CODEX_SHOWCASE.md) | [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md) | [Sample Report](examples/SCRAPLING_REPORT.md) | [Sample JSON](examples/SCRAPLING_REPORT.json) | [Claude Showcase](examples/CLAUDE_SHOWCASE.md) | [Hermes Showcase](examples/HERMES_SHOWCASE.md) | [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
+[中文说明](README.zh-CN.md) | [Tutorial](docs/TUTORIAL.md) | [Compatibility](docs/RUNTIME_COMPATIBILITY.md) | [Sample Report](examples/SCRAPLING_REPORT.md) | [Sample JSON](examples/SCRAPLING_REPORT.json) | [Contributing](CONTRIBUTING.md) | [Security](SECURITY.md) | [Project skill](skills/skillforge-repo-to-skill/SKILL.md)
 
-SkillForge turns a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
+SkillForge compiles a GitHub repository into an audited, portable agent skill that works across Claude, Codex, GitHub Copilot, OpenClaw, Hermes, and other Agent Skills compatible runtimes.
 
-It is built for one job: take a public repo, extract the useful setup and usage knowledge, run a lightweight safety audit, then package the result into target-specific skill layouts without requiring an API key.
+It is built for one job: take a public repo, extract the setup and usage knowledge an agent actually needs, run a lightweight safety audit, then package the result into target-specific skill layouts without requiring an API key.
+
+Validated runtime paths already exist for `Codex`, `Hermes`, and `OpenClaw`, while `Claude` and `Copilot` are packaging-verified and ready for local install.
+
+## Why SkillForge
+
+| Capability | README summarizer | One-target exporter | SkillForge |
+| --- | --- | --- | --- |
+| Extract install and usage commands | partial | yes | yes |
+| Run an upstream safety pass | no | rare | yes |
+| Package for multiple runtimes | no | partial | yes |
+| Verify generated layouts | no | rare | yes |
+| Report local runtime readiness | no | no | yes |
+| Export a shareable markdown or JSON report | no | no | yes |
+
+## How It Works
+
+```mermaid
+flowchart LR
+    A["GitHub repo or local checkout"] --> B["Inspect README, docs, and entrypoints"]
+    B --> C["Audit install paths and instruction files"]
+    C --> D["Generate portable skill bundle"]
+    D --> E["Package for Claude, Codex, Copilot, OpenClaw, and Hermes"]
+    E --> F["Verify layouts and export report artifacts"]
+```
 
 ## Why It Exists
 
@@ -35,7 +61,7 @@ SkillForge bridges that gap:
 
 ## Compatibility Snapshot
 
-Validated on `2026-06-12` with SkillForge `v0.2.0`.
+Validated on `2026-06-12` with SkillForge `v0.3.0`.
 
 | Runtime | Status | Validation |
 | --- | --- | --- |
@@ -46,6 +72,16 @@ Validated on `2026-06-12` with SkillForge `v0.2.0`.
 | Hermes | Supported | Runtime validated |
 
 See the full matrix in [Runtime Compatibility](docs/RUNTIME_COMPATIBILITY.md).
+
+## Launch Assets
+
+- [Codex Showcase](examples/CODEX_SHOWCASE.md)
+- [Scrapling Showcase](examples/SCRAPLING_SHOWCASE.md)
+- [Claude Showcase](examples/CLAUDE_SHOWCASE.md)
+- [Hermes Showcase](examples/HERMES_SHOWCASE.md)
+- [OpenClaw Showcase](examples/OPENCLAW_SHOWCASE.md)
+- [Sample markdown report](examples/SCRAPLING_REPORT.md)
+- [Sample JSON report](examples/SCRAPLING_REPORT.json)
 
 ## Install
 
@@ -156,6 +192,12 @@ See a real report generated from `D4Vinci/Scrapling`:
 - [Markdown sample](examples/SCRAPLING_REPORT.md)
 - [JSON sample](examples/SCRAPLING_REPORT.json)
 
+Regenerate those sample artifacts locally:
+
+```bash
+python3 scripts/generate_example_reports.py
+```
+
 If the audit finds a high-risk pattern, SkillForge stops by default:
 
 ```bash
@@ -229,6 +271,12 @@ python3 -m build
 - CI also builds `sdist` and `wheel`, then runs `twine check`
 - Release artifacts are attached automatically to GitHub Releases
 - PyPI publishing is supported through Trusted Publishing when you configure a PyPI publisher and set the repository variable `PYPI_PUBLISH=true`
+
+## Community
+
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
 
 ## Roadmap
 

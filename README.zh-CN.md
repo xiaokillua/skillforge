@@ -2,12 +2,38 @@
 
 [![CI](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml/badge.svg)](https://github.com/xiaokillua/skillforge/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/xiaokillua/skillforge)](https://github.com/xiaokillua/skillforge/releases)
+[![License](https://img.shields.io/github/license/xiaokillua/skillforge)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](pyproject.toml)
 
-[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md) | [Codex 示例](examples/CODEX_SHOWCASE.zh-CN.md) | [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md) | [报告样例](examples/SCRAPLING_REPORT.md) | [JSON 样例](examples/SCRAPLING_REPORT.json) | [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md) | [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md) | [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
+[English README](README.md) | [中文教程](docs/TUTORIAL.zh-CN.md) | [兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md) | [报告样例](examples/SCRAPLING_REPORT.md) | [JSON 样例](examples/SCRAPLING_REPORT.json) | [贡献指南](CONTRIBUTING.md) | [安全策略](SECURITY.md) | [项目 Skill](skills/skillforge-repo-to-skill/SKILL.md)
 
-SkillForge 可以把一个 GitHub 仓库整理成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
+SkillForge 可以把一个 GitHub 仓库编译成可移植的 agent skill，并导出成适合 Claude、Codex、GitHub Copilot、OpenClaw、Hermes 等环境使用的结构。
 
 它解决的是一个很实际的问题：很多开源项目已经有很强的能力，但 agent 不知道应该怎么安装、怎么运行、哪些命令最常用、哪些脚本有风险。SkillForge 会把这些信息抽出来，再打包成标准 skill。
+
+目前已经对 `Codex`、`Hermes`、`OpenClaw` 做过真实运行验证；`Claude` 和 `Copilot` 这边已经做到了打包和结构层面的验证，可以直接继续本地安装。
+
+## 为什么是 SkillForge
+
+| 能力 | 只做 README 总结 | 单目标导出器 | SkillForge |
+| --- | --- | --- | --- |
+| 提取安装命令和常用命令 | 部分支持 | 支持 | 支持 |
+| 对上游仓库做安全初筛 | 不支持 | 很少支持 | 支持 |
+| 一次导出多个运行时目标 | 不支持 | 部分支持 | 支持 |
+| 校验生成结果是否合规 | 不支持 | 很少支持 | 支持 |
+| 检查本机运行时就绪状态 | 不支持 | 不支持 | 支持 |
+| 导出可分享的 markdown 或 JSON 报告 | 不支持 | 不支持 | 支持 |
+
+## 它是怎么工作的
+
+```mermaid
+flowchart LR
+    A["GitHub 仓库或本地 checkout"] --> B["检查 README、文档和入口命令"]
+    B --> C["审计安装路径和 instruction 文件"]
+    C --> D["生成 portable skill bundle"]
+    D --> E["打包到 Claude、Codex、Copilot、OpenClaw、Hermes"]
+    E --> F["校验结构并导出报告"]
+```
 
 ## 这个项目做什么
 
@@ -34,7 +60,7 @@ SkillForge 会：
 
 ## 兼容性快照
 
-这份快照基于 `2026-06-12` 的验证记录，SkillForge 版本为 `v0.2.0`。
+这份快照基于 `2026-06-12` 的验证记录，SkillForge 版本为 `v0.3.0`。
 
 | 运行时 | 状态 | 验证级别 |
 | --- | --- | --- |
@@ -45,6 +71,16 @@ SkillForge 会：
 | Hermes | 支持 | 已做真实运行验证 |
 
 完整说明见 [运行时兼容矩阵](docs/RUNTIME_COMPATIBILITY.zh-CN.md)。
+
+## 首发资产
+
+- [Codex 示例](examples/CODEX_SHOWCASE.zh-CN.md)
+- [Scrapling 示例](examples/SCRAPLING_SHOWCASE.zh-CN.md)
+- [Claude 示例](examples/CLAUDE_SHOWCASE.zh-CN.md)
+- [Hermes 示例](examples/HERMES_SHOWCASE.zh-CN.md)
+- [OpenClaw 示例](examples/OPENCLAW_SHOWCASE.zh-CN.md)
+- [Markdown 报告样例](examples/SCRAPLING_REPORT.md)
+- [JSON 报告样例](examples/SCRAPLING_REPORT.json)
 
 ## 安装
 
@@ -153,6 +189,12 @@ skillforge report openai/openai-python --target all --artifacts ./dist --json --
 - [Markdown 报告样例](examples/SCRAPLING_REPORT.md)
 - [JSON 报告样例](examples/SCRAPLING_REPORT.json)
 
+如果你想重新生成这些样例：
+
+```bash
+python3 scripts/generate_example_reports.py
+```
+
 ## 输出结构
 
 生成后的 skill 默认会包含：
@@ -222,6 +264,12 @@ python3 -m build
 - CI 也会构建 `sdist` 和 `wheel`，并执行 `twine check`
 - 发布 GitHub Release 时，会自动附加打包产物
 - 如果你在 PyPI 配好 Trusted Publisher，并设置仓库变量 `PYPI_PUBLISH=true`，就可以自动发布到 PyPI
+
+## 社区
+
+- [贡献指南](CONTRIBUTING.md)
+- [安全策略](SECURITY.md)
+- [行为准则](CODE_OF_CONDUCT.md)
 
 ## 后续计划
 
